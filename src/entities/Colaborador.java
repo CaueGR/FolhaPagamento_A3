@@ -8,8 +8,8 @@ public abstract class Colaborador {
 
     // Construtor tem de ser public
     public Colaborador(String matricula, String nome, double salarioBase) {
-        if (nome == null || nome.trim().isEmpty()) throw new IllegalArgumentException("O nome é obrigatório (RN002)");
-        if (salarioBase < 0) throw new IllegalArgumentException("Salário base não pode ser negativo (RN003)");
+        if (nome == null || nome.trim().isEmpty()) throw new IllegalArgumentException("O nome é obrigatório");
+        if (salarioBase < 0) throw new IllegalArgumentException("Salário base não pode ser negativo");
 
         this.matricula = matricula;
         this.nome = nome;
