@@ -6,8 +6,8 @@ public class ColaboradorProducao extends Colaborador {
 
     public ColaboradorProducao(String matricula, String nome, double salarioBase, int quantidadeProduzida, double valorPorUnidade) {
         super(matricula, nome, salarioBase);
-        if (quantidadeProduzida < 0) throw new IllegalArgumentException("Quantidade produzida não pode ser negativa (RN006)");
-        if (valorPorUnidade < 0) throw new IllegalArgumentException("Valor por unidade não pode ser negativo (RN007)");
+        if (quantidadeProduzida < 0) throw new IllegalArgumentException("Quantidade produzida não pode ser negativa");
+        if (valorPorUnidade < 0) throw new IllegalArgumentException("Valor por unidade não pode ser negativo");
 
         this.quantidadeProduzida = quantidadeProduzida;
         this.valorPorUnidade = valorPorUnidade;

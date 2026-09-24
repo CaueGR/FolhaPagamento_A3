@@ -25,7 +25,7 @@ public class Main {
             System.out.println("3. Excluir Colaborador");
             System.out.println("4. Gerar Folha Detalhada");
             System.out.println("5. Emitir Resumo da Folha");
-            System.out.println("6. Editar Colaborador (RF009)");
+            System.out.println("6. Editar Colaborador");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
 

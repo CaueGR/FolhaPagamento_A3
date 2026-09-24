@@ -22,7 +22,7 @@ public class CadastroService {
     public void cadastrar(ColaboradorDTO dto) {
         // RN001: Verifica duplicidade consultando o repository
         if (repository.buscarPorMatricula(dto.matricula()).isPresent()) {
-            throw new IllegalArgumentException("Matrícula " + dto.matricula() + " já cadastrada! (RN001)");
+            throw new IllegalArgumentException("Matrícula " + dto.matricula() + " já cadastrada!");
         }
 
         // Factory: Converte DTO na Entidade correspondente

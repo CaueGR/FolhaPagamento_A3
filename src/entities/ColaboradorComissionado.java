@@ -6,8 +6,8 @@ public class ColaboradorComissionado extends Colaborador {
 
     public ColaboradorComissionado(String matricula, String nome, double salarioBase, double valorVendas, double percentualComissao) {
         super(matricula, nome, salarioBase);
-        if (valorVendas < 0) throw new IllegalArgumentException("Valor de vendas não pode ser negativo (RN004)");
-        if (percentualComissao < 0) throw new IllegalArgumentException("Percentual de comissão não pode ser negativo (RN005)");
+        if (valorVendas < 0) throw new IllegalArgumentException("Valor de vendas não pode ser negativo");
+        if (percentualComissao < 0) throw new IllegalArgumentException("Percentual de comissão não pode ser negativo");
 
         this.valorVendas = valorVendas;
         this.percentualComissao = percentualComissao;
