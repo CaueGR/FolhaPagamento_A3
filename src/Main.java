@@ -1,22 +1,27 @@
+
 import dto.ColaboradorDTO;
 import entities.Colaborador;
 import repository.ColaboradorRepository;
 import service.CadastroService;
 import service.FolhaPagamentoService;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
-        // Inicializando o ecossistema (Injeção de Dependências manual)
+
         ColaboradorRepository repository = new ColaboradorRepository();
         CadastroService cadastroService = new CadastroService(repository);
         FolhaPagamentoService folhaService = new FolhaPagamentoService();
 
         Scanner scanner = new Scanner(System.in);
+
         int opcao = -1;
 
         while (opcao != 0) {
+
             System.out.println("\n==================================");
             System.out.println("   SISTEMA DE FOLHA DE PAGAMENTO  ");
             System.out.println("==================================");
@@ -31,7 +36,8 @@ public class Main {
 
             try {
                 opcao = scanner.nextInt();
-                scanner.nextLine(); // Limpa o buffer
+                scanner.nextLine();
+
             } catch (Exception e) {
                 System.out.println("[ERRO] Digite apenas números.");
                 scanner.nextLine();
@@ -39,120 +45,231 @@ public class Main {
             }
 
             try {
+
                 switch (opcao) {
+
+                    // CADASTRAR COLABORADOR
                     case 1:
-                        System.out.println("Tipo (1-Padrão, 2-Comissionado, 3-Produção): ");
+
+                        System.out.println(
+                                "Tipo (1-Padrão, 2-Comissionado, 3-Produção): "
+                        );
+
                         int tipo = scanner.nextInt();
                         scanner.nextLine();
 
                         System.out.print("Matrícula: ");
                         String matricula = scanner.nextLine();
+
                         System.out.print("Nome: ");
                         String nome = scanner.nextLine();
+
                         System.out.print("Salário Base: R$ ");
                         double salarioBase = scanner.nextDouble();
 
-                        double valorVendas = 0, percentual = 0, valorUnidade = 0;
+                        double valorVendas = 0;
+                        double percentual = 0;
+                        double valorUnidade = 0;
+
                         int qtd = 0;
 
                         if (tipo == 2) {
+
                             System.out.print("Valor das Vendas: R$ ");
                             valorVendas = scanner.nextDouble();
+
                             System.out.print("Percentual de Comissão (%): ");
                             percentual = scanner.nextDouble();
+
                         } else if (tipo == 3) {
+
                             System.out.print("Quantidade Produzida: ");
                             qtd = scanner.nextInt();
+
                             System.out.print("Valor por Unidade: R$ ");
                             valorUnidade = scanner.nextDouble();
                         }
 
-                        // Encapsula tudo no DTO e envia para a camada de Serviço
-                        ColaboradorDTO dto = new ColaboradorDTO(tipo, matricula, nome, salarioBase, valorVendas, percentual, qtd, valorUnidade);
+                        // Cria o DTO com os dados informados.
+                        ColaboradorDTO dto = new ColaboradorDTO(
+                                tipo,
+                                matricula,
+                                nome,
+                                salarioBase,
+                                valorVendas,
+                                percentual,
+                                qtd,
+                                valorUnidade
+                        );
+
+                        // Chama o service.
+                        // A IOException será tratada pelo catch abaixo.
                         cadastroService.cadastrar(dto);
+
                         break;
 
+                    // CONSULTAR COLABORADORES
                     case 2:
-                        System.out.println("\n--- LISTA DE COLABORADORES ---");
+
+                        System.out.println(
+                                "\n--- LISTA DE COLABORADORES ---"
+                        );
+
                         for (Colaborador c : cadastroService.listarTodos()) {
-                            System.out.printf("Matrícula: %s | Nome: %s | Tipo: %s\n", c.getMatricula(), c.getNome(), c.getTipo());
+
+                            System.out.printf(
+                                    "Matrícula: %s | Nome: %s | Tipo: %s%n",
+                                    c.getMatricula(),
+                                    c.getNome(),
+                                    c.getTipo()
+                            );
                         }
+
                         break;
 
+                    // EXCLUIR COLABORADOR
                     case 3:
-                        System.out.print("Matrícula a ser excluída: ");
+
+                        System.out.print(
+                                "Matrícula a ser excluída: "
+                        );
+
                         String matExc = scanner.nextLine();
-                        if(cadastroService.excluir(matExc)) {
-                            System.out.println("[OK] Colaborador removido.");
-                        } else {
-                            System.out.println("[ERRO] Matrícula não encontrada.");
-                        }
+
+                        cadastroService.excluir(matExc);
+
                         break;
 
+                    // GERAR FOLHA DETALHADA
                     case 4:
-                        folhaService.gerarFolhaDetalhada(cadastroService.listarTodos());
+
+                        folhaService.gerarFolhaDetalhada(
+                                cadastroService.listarTodos()
+                        );
+
                         break;
 
+                    // EMITIR RESUMO DA FOLHA
                     case 5:
-                        folhaService.gerarResumo(cadastroService.listarTodos());
+
+                        folhaService.gerarResumo(
+                                cadastroService.listarTodos()
+                        );
+
                         break;
+
+                    // EDITAR COLABORADOR
                     case 6:
-                        System.out.print("Digite a Matrícula do colaborador que deseja editar: ");
+
+                        System.out.print(
+                                "Digite a matrícula do colaborador que deseja editar: "
+                        );
+
                         String matEdit = scanner.nextLine();
 
-                        // Verifica se existe antes de pedir os dados
+                        // Verifica se o colaborador existe.
                         if (cadastroService.buscarPorMatricula(matEdit).isEmpty()) {
-                            System.out.println("[ERRO] Colaborador não encontrado.");
+
+                            System.out.println(
+                                    "[ERRO] Colaborador não encontrado."
+                            );
+
                             break;
                         }
 
-                        System.out.println("Qual será o NOVO tipo? (1-Padrão, 2-Comissionado, 3-Produção): ");
+                        System.out.println(
+                                "Qual será o NOVO tipo? "
+                                        + "(1-Padrão, 2-Comissionado, 3-Produção): "
+                        );
+
                         int novoTipo = scanner.nextInt();
                         scanner.nextLine();
 
                         System.out.print("Novo Nome: ");
                         String novoNome = scanner.nextLine();
+
                         System.out.print("Novo Salário Base: R$ ");
                         double novoSalarioBase = scanner.nextDouble();
 
-                        double novasVendas = 0, novoPercentual = 0, novoValorUnidade = 0;
+                        double novasVendas = 0;
+                        double novoPercentual = 0;
+                        double novoValorUnidade = 0;
+
                         int novaQtd = 0;
 
                         if (novoTipo == 2) {
+
                             System.out.print("Novo Valor das Vendas: R$ ");
                             novasVendas = scanner.nextDouble();
-                            System.out.print("Novo Percentual de Comissão (%): ");
+
+                            System.out.print(
+                                    "Novo Percentual de Comissão (%): "
+                            );
+
                             novoPercentual = scanner.nextDouble();
+
                         } else if (novoTipo == 3) {
+
                             System.out.print("Nova Quantidade Produzida: ");
                             novaQtd = scanner.nextInt();
+
                             System.out.print("Novo Valor por Unidade: R$ ");
                             novoValorUnidade = scanner.nextDouble();
                         }
 
-                        // A matrícula permanece a mesma (matEdit), os outros dados são novos
+                        // A matrícula permanece a mesma.
                         ColaboradorDTO dtoAtualizacao = new ColaboradorDTO(
-                                novoTipo, matEdit, novoNome, novoSalarioBase,
-                                novasVendas, novoPercentual, novaQtd, novoValorUnidade
+                                novoTipo,
+                                matEdit,
+                                novoNome,
+                                novoSalarioBase,
+                                novasVendas,
+                                novoPercentual,
+                                novaQtd,
+                                novoValorUnidade
                         );
 
                         cadastroService.atualizar(dtoAtualizacao);
+
                         break;
 
+                    // SAIR
                     case 0:
+
                         System.out.println("Encerrando...");
+
                         break;
 
+                    // OPÇÃO INVÁLIDA
                     default:
+
                         System.out.println("Opção inválida!");
+
+                        break;
                 }
+
             } catch (IllegalArgumentException e) {
-                System.out.println("\n[REGRA DE NEGÓCIO] " + e.getMessage());
+
+                System.out.println(
+                        "\n[REGRA DE NEGÓCIO] " + e.getMessage()
+                );
+
+            } catch (IOException e) {
+
+                System.out.println(
+                        "\n[ERRO] Não foi possível salvar os dados no arquivo."
+                );
+
             } catch (Exception e) {
-                System.out.println("\n[ERRO DE ENTRADA] Verifique os dados digitados.");
+
+                System.out.println(
+                        "\n[ERRO DE ENTRADA] Verifique os dados digitados."
+                );
+
                 scanner.nextLine();
             }
         }
+
         scanner.close();
     }
 }

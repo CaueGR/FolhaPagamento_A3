@@ -4,6 +4,7 @@ import entities.Colaborador;
 import entities.ColaboradorComissionado;
 import entities.ColaboradorPadrao;
 import entities.ColaboradorProducao;
+import java.io.IOException;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -114,5 +115,7 @@ public class ColaboradorRepository {
         } catch (Exception e) {
             System.out.println("[ERRO CRÍTICO] Falha ao ler o banco de dados: " + e.getMessage());
         }
+
+
     }
 }

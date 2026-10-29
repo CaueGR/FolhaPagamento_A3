@@ -21,7 +21,6 @@ public class ColaboradorProducao extends Colaborador {
     @Override
     public String getTipo() { return "Produção"; }
 
-    // NOVOS GETTERS ADICIONADOS AQUI:
     public int getQuantidadeProduzida() { return quantidadeProduzida; }
     public double getValorPorUnidade() { return valorPorUnidade; }
 }
