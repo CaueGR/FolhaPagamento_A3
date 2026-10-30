@@ -4,25 +4,44 @@ import entities.Colaborador;
 import entities.ColaboradorComissionado;
 import entities.ColaboradorPadrao;
 import entities.ColaboradorProducao;
-import java.io.IOException;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.AtomicMoveNotSupportedException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
 public class ColaboradorRepository {
-    private List<Colaborador> baseDeDados = new ArrayList<>();
-    private static final String CAMINHO_ARQUIVO = "colaboradores_db.csv";
+
+    private final List<Colaborador> baseDeDados = new ArrayList<>();
+
+    private static final Path CAMINHO_ARQUIVO =
+            Paths.get("colaboradores_db.csv").toAbsolutePath();
 
     public ColaboradorRepository() {
         carregarDadosDoArquivo();
     }
 
-    public void salvar(Colaborador colaborador) {
-        baseDeDados.add(colaborador);
-        salvarDadosNoArquivo();
+    public void salvar(Colaborador colaborador) throws IOException {
+
+        List<Colaborador> novaBase =
+                new ArrayList<>(baseDeDados);
+
+        novaBase.add(colaborador);
+
+        salvarDadosNoArquivo(novaBase);
+
+        baseDeDados.clear();
+        baseDeDados.addAll(novaBase);
     }
 
     public List<Colaborador> buscarTodos() {
@@ -35,87 +54,237 @@ public class ColaboradorRepository {
                 .findFirst();
     }
 
-    public boolean deletar(String matricula) {
-        boolean removido = baseDeDados.removeIf(c -> c.getMatricula().equals(matricula));
+    public boolean deletar(String matricula) throws IOException {
+
+        List<Colaborador> novaBase =
+                new ArrayList<>(baseDeDados);
+
+        boolean removido = novaBase.removeIf(
+                c -> c.getMatricula().equals(matricula)
+        );
+
         if (removido) {
-            salvarDadosNoArquivo();
+            salvarDadosNoArquivo(novaBase);
+
+            baseDeDados.clear();
+            baseDeDados.addAll(novaBase);
         }
+
         return removido;
     }
 
-    public boolean atualizar(Colaborador colaboradorAtualizado) {
-        for (int i = 0; i < baseDeDados.size(); i++) {
-            if (baseDeDados.get(i).getMatricula().equals(colaboradorAtualizado.getMatricula())) {
-                baseDeDados.set(i, colaboradorAtualizado);
-                salvarDadosNoArquivo(); // Atualiza o CSV
+    public boolean atualizar(Colaborador colaboradorAtualizado)
+            throws IOException {
+
+        List<Colaborador> novaBase =
+                new ArrayList<>(baseDeDados);
+
+        for (int i = 0; i < novaBase.size(); i++) {
+
+            if (novaBase.get(i).getMatricula()
+                    .equals(colaboradorAtualizado.getMatricula())) {
+
+                novaBase.set(i, colaboradorAtualizado);
+
+                salvarDadosNoArquivo(novaBase);
+
+                baseDeDados.clear();
+                baseDeDados.addAll(novaBase);
+
                 return true;
             }
         }
+
         return false;
     }
 
-    private void salvarDadosNoArquivo() {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(CAMINHO_ARQUIVO))) {
-            bw.write("TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE\n");
+    private void salvarDadosNoArquivo(
+            List<Colaborador> colaboradores
+    ) throws IOException {
 
-            for (Colaborador c : baseDeDados) {
-                StringBuilder linha = new StringBuilder();
+        Path temporario = Files.createTempFile(
+                CAMINHO_ARQUIVO.getParent(),
+                "colaboradores_",
+                ".tmp"
+        );
 
-                // Usamos Locale.US para garantir que os decimais usam ponto (.) em vez de vírgula (,),
-                // para não quebrar a estrutura do CSV.
-                if (c instanceof ColaboradorPadrao) {
-                    linha.append(String.format(Locale.US, "1,%s,%s,%s,0,0,0,0\n",
-                            c.getMatricula(), c.getNome(), c.getSalarioBase()));
-                } else if (c instanceof ColaboradorComissionado cc) {
-                    linha.append(String.format(Locale.US, "2,%s,%s,%s,%s,%s,0,0\n",
-                            cc.getMatricula(), cc.getNome(), cc.getSalarioBase(),
-                            cc.getValorVendas(), cc.getPercentualComissao()));
-                } else if (c instanceof ColaboradorProducao cp) {
-                    linha.append(String.format(Locale.US, "3,%s,%s,%s,0,0,%s,%s\n",
-                            cp.getMatricula(), cp.getNome(), cp.getSalarioBase(),
-                            cp.getQuantidadeProduzida(), cp.getValorPorUnidade()));
+        try {
+
+            try (BufferedWriter bw = Files.newBufferedWriter(
+                    temporario,
+                    StandardCharsets.UTF_8
+            )) {
+
+                bw.write(
+                        "TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,"
+                                + "PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE"
+                );
+                bw.newLine();
+
+                for (Colaborador c : colaboradores) {
+
+                    String linha;
+
+                    if (c instanceof ColaboradorPadrao) {
+
+                        linha = String.format(
+                                Locale.US,
+                                "1,%s,%s,%s,0,0,0,0",
+                                c.getMatricula(),
+                                c.getNome(),
+                                c.getSalarioBase()
+                        );
+
+                    } else if (c instanceof ColaboradorComissionado cc) {
+
+                        linha = String.format(
+                                Locale.US,
+                                "2,%s,%s,%s,%s,%s,0,0",
+                                cc.getMatricula(),
+                                cc.getNome(),
+                                cc.getSalarioBase(),
+                                cc.getValorVendas(),
+                                cc.getPercentualComissao()
+                        );
+
+                    } else if (c instanceof ColaboradorProducao cp) {
+
+                        linha = String.format(
+                                Locale.US,
+                                "3,%s,%s,%s,0,0,%s,%s",
+                                cp.getMatricula(),
+                                cp.getNome(),
+                                cp.getSalarioBase(),
+                                cp.getQuantidadeProduzida(),
+                                cp.getValorPorUnidade()
+                        );
+
+                    } else {
+
+                        throw new IllegalArgumentException(
+                                "Tipo de colaborador não suportado."
+                        );
+                    }
+
+                    bw.write(linha);
+                    bw.newLine();
                 }
-
-                bw.write(linha.toString());
             }
-        } catch (IOException e) {
-            System.out.println("[ERRO CRÍTICO] Falha ao salvar no banco de dados: " + e.getMessage());
+
+            try {
+
+                Files.move(
+                        temporario,
+                        CAMINHO_ARQUIVO,
+                        StandardCopyOption.REPLACE_EXISTING,
+                        StandardCopyOption.ATOMIC_MOVE
+                );
+
+            } catch (AtomicMoveNotSupportedException e) {
+
+                Files.move(
+                        temporario,
+                        CAMINHO_ARQUIVO,
+                        StandardCopyOption.REPLACE_EXISTING
+                );
+            }
+
+        } finally {
+
+            Files.deleteIfExists(temporario);
         }
     }
 
     private void carregarDadosDoArquivo() {
-        File arquivo = new File(CAMINHO_ARQUIVO);
-        if (!arquivo.exists()) return;
 
-        try (BufferedReader br = new BufferedReader(new FileReader(arquivo))) {
-            String linha = br.readLine(); // Pula o cabeçalho
+        if (!Files.exists(CAMINHO_ARQUIVO)) {
+            return;
+        }
+
+        List<Colaborador> carregados = new ArrayList<>();
+
+        try (BufferedReader br = Files.newBufferedReader(
+                CAMINHO_ARQUIVO,
+                StandardCharsets.UTF_8
+        )) {
+
+            br.readLine(); // Ignora o cabeçalho.
+
+            String linha;
+            int numeroLinha = 1;
 
             while ((linha = br.readLine()) != null) {
-                String[] dados = linha.split(",");
-                if (dados.length < 8) continue;
+
+                numeroLinha++;
+
+                if (linha.isBlank()) {
+                    continue;
+                }
+
+                String[] dados = linha.split(",", -1);
+
+                if (dados.length != 8) {
+                    throw new IllegalStateException(
+                            "CSV inválido na linha " + numeroLinha
+                    );
+                }
 
                 int tipo = Integer.parseInt(dados[0]);
                 String matricula = dados[1];
                 String nome = dados[2];
                 double salarioBase = Double.parseDouble(dados[3]);
 
-                // Lê as colunas específicas guardadas no CSV
-                if (tipo == 1) {
-                    baseDeDados.add(new ColaboradorPadrao(matricula, nome, salarioBase));
-                } else if (tipo == 2) {
-                    double vendas = Double.parseDouble(dados[4]);
-                    double percentual = Double.parseDouble(dados[5]);
-                    baseDeDados.add(new ColaboradorComissionado(matricula, nome, salarioBase, vendas, percentual));
-                } else if (tipo == 3) {
-                    int qtd = Integer.parseInt(dados[6]);
-                    double valorUnidade = Double.parseDouble(dados[7]);
-                    baseDeDados.add(new ColaboradorProducao(matricula, nome, salarioBase, qtd, valorUnidade));
+                switch (tipo) {
+
+                    case 1 -> carregados.add(
+                            new ColaboradorPadrao(
+                                    matricula,
+                                    nome,
+                                    salarioBase
+                            )
+                    );
+
+                    case 2 -> carregados.add(
+                            new ColaboradorComissionado(
+                                    matricula,
+                                    nome,
+                                    salarioBase,
+                                    Double.parseDouble(dados[4]),
+                                    Double.parseDouble(dados[5])
+                            )
+                    );
+
+                    case 3 -> carregados.add(
+                            new ColaboradorProducao(
+                                    matricula,
+                                    nome,
+                                    salarioBase,
+                                    Integer.parseInt(dados[6]),
+                                    Double.parseDouble(dados[7])
+                            )
+                    );
+
+                    default -> throw new IllegalStateException(
+                            "Tipo inválido na linha " + numeroLinha
+                    );
                 }
             }
-        } catch (Exception e) {
-            System.out.println("[ERRO CRÍTICO] Falha ao ler o banco de dados: " + e.getMessage());
+
+        } catch (IOException e) {
+
+            throw new UncheckedIOException(
+                    "Não foi possível ler o arquivo CSV.",
+                    e
+            );
+
+        } catch (IllegalArgumentException e) {
+
+            throw new IllegalStateException(
+                    "Dados inválidos no CSV: " + e.getMessage(),
+                    e
+            );
         }
 
-
+        baseDeDados.addAll(carregados);
     }
 }

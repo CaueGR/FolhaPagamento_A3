@@ -14,7 +14,8 @@ public class Main {
 
         ColaboradorRepository repository = new ColaboradorRepository();
         CadastroService cadastroService = new CadastroService(repository);
-        FolhaPagamentoService folhaService = new FolhaPagamentoService();
+        FolhaPagamentoService folhaService =
+                new FolhaPagamentoService(cadastroService);
 
         Scanner scanner = new Scanner(System.in);
 
@@ -31,6 +32,7 @@ public class Main {
             System.out.println("4. Gerar Folha Detalhada");
             System.out.println("5. Emitir Resumo da Folha");
             System.out.println("6. Editar Colaborador");
+            System.out.println("7. Gerar Folha Individual");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
 
@@ -234,6 +236,18 @@ public class Main {
                         break;
 
                     // SAIR
+                    case 7:
+
+                        System.out.print(
+                                "Digite a matrícula do colaborador: "
+                        );
+
+                        String matriculaIndividual = scanner.nextLine();
+
+                        folhaService.gerarFolhaIndividual(matriculaIndividual);
+
+                        break;
+
                     case 0:
 
                         System.out.println("Encerrando...");
