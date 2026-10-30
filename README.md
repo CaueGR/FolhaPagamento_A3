@@ -74,7 +74,7 @@ Se recebeu um ZIP, extraia-o e abra o terminal na pasta que contém `src` e `col
 ```powershell
 java -version
 javac -version
-```
+```'
 
 Ambos devem apontar para a versão 21. Se algum comando não for encontrado, configure o JDK 21 no `PATH` e abra um novo terminal.
 
