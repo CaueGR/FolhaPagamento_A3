@@ -1,426 +1,299 @@
 # Sistema de Folha de Pagamento
 
-## 1. Sobre o projeto
+Aplicação acadêmica em **Java 21**, executada pelo terminal, para gerenciar colaboradores e calcular sua remuneração. Os dados são persistidos em CSV.
 
-O **Sistema de Folha de Pagamento** é uma aplicação desenvolvida em Java com o objetivo de realizar o cadastro, a consulta, a edição e a exclusão de colaboradores, além de calcular e emitir informações relacionadas à folha de pagamento.
+## 1. Objetivo do projeto
 
-O sistema utiliza uma interface de linha de comando (CLI), permitindo que o usuário interaja com as funcionalidades por meio de um menu.
+Aplicar programação orientada a objetos em um sistema que permite cadastrar, consultar, editar e excluir colaboradores, gerar folhas de pagamento e consolidar os valores pagos por categoria.
 
-Os dados dos colaboradores são armazenados em um arquivo CSV, permitindo que as informações permaneçam disponíveis mesmo após o encerramento da aplicação.
+O projeto utiliza abstração, herança e polimorfismo nas entidades, um `record` para transporte de dados, serviços para coordenar operações e um repositório para persistência em arquivo.
 
-O projeto utiliza conceitos de Programação Orientada a Objetos (POO), separação de responsabilidades e persistência de dados em arquivos.
+### Funcionalidades implementadas
 
-## 2. Objetivos
-
-- Gerenciar o cadastro de colaboradores.
-- Diferenciar colaboradores de acordo com seu modelo de remuneração.
-- Calcular valores de pagamento conforme o tipo de colaborador.
-- Permitir consultas, atualizações e exclusões de registros.
-- Gerar folhas de pagamento detalhadas.
-- Emitir resumos financeiros da folha.
-- Armazenar os dados em um arquivo CSV.
-- Aplicar conceitos de encapsulamento, herança, polimorfismo e organização em camadas.
-
-## 3. Tecnologias utilizadas
-
-| Tecnologia | Utilização |
-|---|---|
-| Java 21 | Linguagem de programação |
-| Java Records | Representação de DTOs |
-| Java Collections | Armazenamento temporário dos colaboradores em memória |
-| Java Streams | Busca de colaboradores |
-| Java I/O e NIO | Leitura e gravação de arquivos |
-| CSV | Persistência dos dados |
-| Scanner | Entrada de dados pelo terminal |
-
-## 4. Funcionalidades
-
-O sistema disponibiliza as seguintes operações:
-
-| Opção | Funcionalidade | Descrição |
+| Opção | Operação | Comportamento |
 |---|---|---|
-| 1 | Cadastrar colaborador | Registra um novo colaborador |
-| 2 | Consultar colaboradores | Exibe os colaboradores cadastrados |
-| 3 | Excluir colaborador | Remove um colaborador pela matrícula |
-| 4 | Gerar folha detalhada | Apresenta informações detalhadas da folha |
-| 5 | Emitir resumo da folha | Apresenta um resumo dos pagamentos |
-| 6 | Editar colaborador | Atualiza os dados de um colaborador |
-| 0 | Sair | Encerra a aplicação |
+| 1 | Cadastrar colaborador | Seleciona o tipo, recebe os dados e verifica matrícula duplicada. |
+| 2 | Consultar colaboradores | Lista matrícula, nome e tipo dos registros cadastrados. |
+| 3 | Excluir colaborador | Localiza pela matrícula e persiste a exclusão. |
+| 4 | Gerar folha detalhada | Exibe base, adicionais e salário final de cada colaborador. |
+| 5 | Emitir resumo da folha | Exibe quantidade de colaboradores, total geral e totais por categoria. |
+| 6 | Editar colaborador | Mantém a matrícula e permite alterar nome, tipo e dados de remuneração. |
+| 7 | Gerar folha individual | Solicita uma matrícula e apresenta os dados salariais daquele colaborador. |
+| 0 | Sair | Encerra a aplicação. |
 
-### 4.1 Cadastro de colaboradores
+Na opção **7**, `gerarFolhaIndividual(String matricula)` consulta `CadastroService.buscarPorMatricula()`, cujo retorno é `Optional<Colaborador>`. O serviço utiliza `ifPresentOrElse()` para exibir matrícula, nome, tipo, salário-base, adicionais e salário final, ou a mensagem `[ERRO] Colaborador não encontrado.`. O repositório também retorna `Optional<Colaborador>` na busca.
 
-O cadastro permite informar:
+### Regras de remuneração
 
-- Tipo de colaborador;
-- Matrícula;
-- Nome;
-- Salário-base;
-- Informações específicas de remuneração, conforme o tipo.
+| Tipo | Categoria | Salário final |
+|---|---|---|
+| 1 | Padrão | `salarioBase` |
+| 2 | Comissionado | `salarioBase + valorVendas * (percentualComissao / 100)` |
+| 3 | Produção | `salarioBase + quantidadeProduzida * valorPorUnidade` |
 
-O sistema verifica se a matrícula já está cadastrada antes de realizar a inclusão.
+O percentual deve ser informado como **5 para 5%**. Nos relatórios, os adicionais correspondem a `salarioFinal - salarioBase`.
 
-### 4.2 Consulta
+Exemplos: base de R$ 2.000,00, vendas de R$ 10.000,00 e comissão de 5% resultam em R$ 2.500,00; base de R$ 1.500,00, produção de 100 unidades e R$ 10,00 por unidade resultam em R$ 2.500,00.
 
-A consulta apresenta os colaboradores cadastrados, incluindo:
+Os cálculos atuais não incluem INSS, IRRF, FGTS, férias, décimo terceiro ou histórico por competência. Os relatórios são exibidos no terminal; não há exportação de holerites ou PDF.
 
-- Matrícula;
-- Nome;
-- Tipo de colaborador.
+## 2. Integrantes
 
-### 4.3 Exclusão
+**A identificação oficial da equipe ainda não foi informada neste README.** Os integrantes deverão preencher seus nomes completos e suas matrículas acadêmicas antes da entrega. Nenhum nome ou número foi presumido a partir do proprietário do repositório ou dos exemplos de colaboradores.
 
-A exclusão é realizada por meio da matrícula.
+## 3. Tecnologias e requisitos — Java 21
 
-Caso a matrícula seja encontrada, o colaborador é removido da lista e os dados são atualizados no arquivo CSV.
-
-Caso contrário, o sistema informa que o colaborador não foi encontrado.
-
-### 4.4 Edição
-
-A edição permite localizar um colaborador pela matrícula e atualizar seus dados.
-
-A matrícula é mantida, enquanto os demais dados podem ser modificados.
-
-O sistema também permite alterar o tipo de colaborador, desde que seja informado um tipo válido.
-
-### 4.5 Folha de pagamento detalhada
-
-A funcionalidade de folha detalhada utiliza a classe `FolhaPagamentoService` para apresentar os dados de pagamento dos colaboradores cadastrados.
-
-### 4.6 Resumo da folha
-
-O resumo da folha apresenta informações consolidadas dos pagamentos.
-
-A implementação dos cálculos e da apresentação dos resultados é responsabilidade da classe `FolhaPagamentoService`.
-
-## 5. Tipos de colaboradores
-
-O sistema trabalha com três tipos de colaboradores.
-
-### 5.1 Colaborador padrão
-
-Recebe o valor definido em seu salário-base.
-
-**Regra de cálculo:**
-
-```text
-Salário = Salário-base
-```
-
-### 5.2 Colaborador comissionado
-
-Recebe o salário-base acrescido de uma comissão calculada sobre o valor das vendas.
-
-**Regra de cálculo:**
-
-```text
-Comissão = Valor das vendas × Percentual de comissão / 100
-
-Salário = Salário-base + Comissão
-```
-
-Exemplo:
-
-```text
-Salário-base: R$ 2.000,00
-Vendas: R$ 10.000,00
-Comissão: 5%
-
-Comissão = 10.000 × 5 / 100
-Comissão = R$ 500,00
-
-Salário = 2.000 + 500
-
-Salário final = R$ 2.500,00
-```
-
-### 5.3 Colaborador de produção
-
-Recebe o salário-base acrescido de um valor calculado conforme sua produção.
-
-**Regra de cálculo:**
-
-```text
-Valor da produção = Quantidade produzida × Valor por unidade
-
-Salário = Salário-base + Valor da produção
-```
-
-Exemplo:
-
-```text
-Salário-base: R$ 1.500,00
-Quantidade produzida: 100 unidades
-Valor por unidade: R$ 10,00
-
-Valor da produção = 100 × 10
-Valor da produção = R$ 1.000,00
-
-Salário final = R$ 2.500,00
-```
-
-> Os exemplos ilustram as regras de remuneração consideradas no projeto. A aplicação de descontos, encargos ou outros adicionais depende das regras implementadas na classe responsável pelo cálculo da folha.
-
-## 6. Arquitetura do projeto
-
-O projeto utiliza uma organização em camadas para separar as responsabilidades.
-
-```text
-Usuário
-   |
-   v
-Main
-   |
-   v
-CadastroService
-   |
-   v
-ColaboradorRepository
-   |
-   v
-Arquivo CSV
-```
-
-A geração da folha utiliza uma camada específica:
-
-```text
-Main
-   |
-   v
-FolhaPagamentoService
-   |
-   v
-Colaboradores cadastrados
-```
-
-### 6.1 Main
-
-A classe `Main` é responsável pela interação com o usuário.
-
-Suas responsabilidades incluem:
-
-- Exibir o menu principal;
-- Receber os dados digitados;
-- Criar os objetos DTO;
-- Chamar os métodos dos serviços;
-- Tratar erros de entrada e exceções;
-- Controlar o funcionamento da aplicação.
-
-### 6.2 DTO — Data Transfer Object
-
-A classe `ColaboradorDTO` é utilizada para transportar os dados informados pelo usuário até a camada de serviço.
-
-O DTO foi implementado utilizando um `record` do Java.
-
-```java
-public record ColaboradorDTO(
-        int tipo,
-        String matricula,
-        String nome,
-        double salarioBase,
-        double valorVendas,
-        double percentualComissao,
-        int quantidadeProduzida,
-        double valorPorUnidade
-) {}
-```
-
-O uso de `record` permite representar os dados de forma concisa e imutável.
-
-### 6.3 CadastroService
-
-A classe `CadastroService` contém as regras relacionadas ao gerenciamento dos colaboradores.
-
-Suas responsabilidades incluem:
-
-- Validar matrículas duplicadas;
-- Verificar a existência de colaboradores;
-- Criar as entidades conforme o tipo informado;
-- Encaminhar os dados ao repositório;
-- Coordenar operações de cadastro, consulta, edição e exclusão.
-
-### 6.4 ColaboradorRepository
-
-A classe `ColaboradorRepository` é responsável pela persistência dos dados.
-
-Suas funcionalidades incluem:
-
-- Salvar colaboradores;
-- Buscar colaboradores por matrícula;
-- Listar todos os colaboradores;
-- Atualizar registros;
-- Excluir registros;
-- Carregar os dados do arquivo CSV;
-- Gravar os dados no arquivo CSV.
-
-O repositório utiliza uma lista em memória para manter os colaboradores durante a execução da aplicação.
-
-### 6.5 FolhaPagamentoService
-
-A classe `FolhaPagamentoService` é responsável pelas operações relacionadas à folha de pagamento.
-
-Suas funcionalidades incluem:
-
-- Gerar a folha detalhada;
-- Emitir o resumo da folha;
-- Utilizar os colaboradores cadastrados para apresentar os resultados.
-
-## 7. Persistência de dados
-
-Os dados são armazenados no arquivo:
-
-```text
-colaboradores_db.csv
-```
-
-O arquivo utiliza o formato CSV (*Comma-Separated Values*).
-
-A estrutura dos dados é:
-
-```csv
-TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE
-```
-
-Cada colaborador é representado por uma linha.
-
-Exemplo:
-
-```csv
-TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE
-1,001,Carlos,2000.0,0,0,0,0
-2,002,Ana,2000.0,10000.0,5.0,0,0
-3,003,Pedro,1500.0,0,0,100,10.0
-```
-
-O campo `TIPO` identifica o modelo de remuneração:
-
-| Tipo | Colaborador |
+| Tecnologia | Uso e situação |
 |---|---|
-| 1 | Padrão |
-| 2 | Comissionado |
-| 3 | Produção |
+| JDK 21 | Compilação e execução da aplicação. |
+| Java Records | `ColaboradorDTO`, para transporte dos dados. |
+| Collections, Streams e Optional | Lista em memória, busca por matrícula e representação de ausência. |
+| Java I/O e NIO | Leitura UTF-8, escrita em arquivo temporário e substituição do CSV. |
+| Scanner | Entrada pelo terminal. |
+| CSV | Persistência local dos colaboradores. |
+| JUnit 5 | Planejado; sem suíte ou dependências configuradas na versão inspecionada. |
+| Robot Framework | Planejado; sem suíte ou integração configurada na versão inspecionada. |
 
-Os dados são carregados na inicialização do sistema.
+A aplicação utiliza a biblioteca padrão do Java e não exige dependências externas para executar. Não há `pom.xml`, `build.gradle` ou wrappers Maven/Gradle na versão inspecionada. Git é necessário apenas para clonar o repositório; uma IDE é opcional.
 
-Quando uma operação de cadastro, edição ou exclusão é realizada, o arquivo CSV é atualizado.
+## 4. Instalação, compilação e utilização
 
-## 8. Tratamento de erros
+### Obter o projeto
 
-O sistema utiliza exceções para tratar situações que impedem a execução correta de uma operação.
+Com o Git instalado, execute no PowerShell:
 
-Entre os erros tratados estão:
-
-- Matrícula já cadastrada;
-- Colaborador não encontrado;
-- Tipo de colaborador inválido;
-- Dados de entrada inválidos;
-- Falhas na leitura do arquivo;
-- Falhas na gravação do arquivo.
-
-As exceções de entrada são tratadas na classe `Main`, enquanto as regras de negócio são verificadas na camada de serviço.
-
-As falhas de persistência são encaminhadas por meio de `IOException`.
-
-## 9. Como executar o projeto
-
-### Pré-requisitos
-
-- Java Development Kit (JDK) 21;
-- IDE compatível com Java, como IntelliJ IDEA, Eclipse ou VS Code.
-
-### Execução pela IDE
-
-1. Abra o projeto na IDE.
-2. Verifique se o JDK 21 está configurado.
-3. Localize a classe `Main`.
-4. Execute o método `main`.
-5. Utilize o menu apresentado no terminal.
-
-### Execução pelo terminal
-
-Caso o projeto esteja configurado para compilação direta pelo terminal, navegue até a pasta que contém os arquivos Java.
-
-A compilação deve considerar os pacotes e a estrutura do projeto.
-
-Após a compilação, execute a classe `Main` utilizando o classpath correspondente.
-
-> Os comandos exatos de compilação dependem da estrutura de pastas e da configuração do projeto.
-
-## 10. Exemplo de utilização
-
-Ao executar a aplicação, o usuário visualizará o menu:
-
-```text
-==================================
-   SISTEMA DE FOLHA DE PAGAMENTO
-==================================
-1. Cadastrar Colaborador
-2. Consultar Colaboradores
-3. Excluir Colaborador
-4. Gerar Folha Detalhada
-5. Emitir Resumo da Folha
-6. Editar Colaborador
-0. Sair
-Escolha uma opção:
+```powershell
+git clone https://github.com/CaueGR/FolhaPagamento_A3.git
+Set-Location .\FolhaPagamento_A3
 ```
 
-Para cadastrar um colaborador padrão, o usuário deverá selecionar a opção `1` e informar os dados solicitados.
+Se recebeu um ZIP, extraia-o e abra o terminal na pasta que contém `src` e `colaboradores_db.csv`.
 
-Para consultar os registros cadastrados, deverá selecionar a opção `2`.
+### Conferir o JDK
 
-As demais funcionalidades são acessadas pelo menu principal.
+```powershell
+java -version
+javac -version
+```
 
-## 11. Conceitos de Programação Orientada a Objetos
+Ambos devem apontar para a versão 21. Se algum comando não for encontrado, configure o JDK 21 no `PATH` e abra um novo terminal.
 
-O projeto aplica conceitos fundamentais de POO.
+### Compilar e executar — PowerShell 5.1 ou superior
 
-### Encapsulamento
+Execute na raiz do projeto:
 
-As responsabilidades e os dados são organizados dentro das classes correspondentes.
+```powershell
+New-Item -ItemType Directory -Force -Path .\out | Out-Null
+javac --release 21 -encoding UTF-8 -d .\out .\src\Main.java .\src\dto\*.java .\src\entities\*.java .\src\repository\*.java .\src\service\*.java
+if ($LASTEXITCODE -eq 0) {
+    java -cp .\out Main
+}
+```
 
-### Herança
+O comando compila todos os pacotes existentes. `Main` não possui declaração de pacote. Execute novamente a compilação depois de alterar os fontes.
 
-Os diferentes tipos de colaboradores são representados por classes específicas derivadas da classe base `Colaborador`.
+**Mantenha o diretório de execução na raiz do projeto:** o CSV é localizado em relação ao diretório de trabalho, não à pasta da classe compilada. Ao executar em outra pasta, o programa poderá iniciar com uma base vazia e criar outro CSV nesse local.
 
-### Polimorfismo
+O `Scanner` utiliza a configuração regional padrão do Java. No terminal, o separador decimal aceito depende dessa configuração. Para uma execução explícita com ponto decimal, use:
 
-Os diferentes tipos de colaboradores podem ser tratados de forma comum por meio da classe base, permitindo que suas particularidades sejam utilizadas nas operações de pagamento.
+```powershell
+java '-Duser.language=en' '-Duser.country=US' -cp .\out Main
+```
 
-### Abstração
+Essa opção afeta a entrada e a apresentação numérica. O CSV utiliza ponto decimal independentemente da configuração regional.
 
-A classe base `Colaborador` representa os elementos comuns aos colaboradores, enquanto as classes específicas representam as particularidades de cada modelo de remuneração.
+### Executar no IntelliJ IDEA
 
-### Separação de responsabilidades
+1. Abra a pasta do projeto.
+2. Configure o SDK do projeto e o nível da linguagem para Java 21.
+3. Confira se `src` está marcada como pasta de código-fonte.
+4. Na configuração de execução de `Main`, defina a raiz do projeto como diretório de trabalho.
+5. Execute `src/Main.java` e utilize as opções do menu.
 
-A aplicação divide suas responsabilidades entre interface, serviço, entidades, DTO e repositório.
+### Exemplo de utilização
 
-Essa organização facilita a manutenção e a evolução do código.
+1. Selecione `1`, escolha o tipo `2` e cadastre uma matrícula de teste com nome, base `2000`, vendas `10000` e percentual `5`.
+2. Selecione `2` para conferir o cadastro.
+3. Selecione `7` e informe a mesma matrícula: o salário final esperado é R$ 2.500,00 e os adicionais são R$ 500,00.
+4. Use `4` e `5` para consultar a folha detalhada e o resumo.
+5. Use `6` para editar o registro, mantendo sua matrícula.
+6. Encerre com `0`, reabra a aplicação e confira a persistência.
+7. Use `3` para excluir o registro de teste.
 
-## 12. Limitações e melhorias futuras
+## 5. Formato e persistência do CSV
 
-O projeto pode ser evoluído com novas funcionalidades, como:
+Arquivo: **`colaboradores_db.csv`**, em UTF-8, separado por vírgulas, com cabeçalho na primeira linha e oito campos por registro.
 
-- Implementação de testes unitários automatizados;
-- Testes de integração da persistência em CSV;
-- Validação mais robusta dos dados de entrada;
-- Melhorias no tratamento de arquivos corrompidos;
-- Utilização de banco de dados relacional;
-- Implementação de interface gráfica;
-- Geração de relatórios em PDF;
-- Inclusão de descontos e encargos na folha;
-- Controle de histórico de pagamentos;
-- Implementação de autenticação e controle de acesso.
+```csv
+TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE
+1,TESTE001,Colaborador Exemplo A,2000.0,0,0,0,0
+2,TESTE002,Colaborador Exemplo B,2000.0,10000.0,5.0,0,0
+3,TESTE003,Colaborador Exemplo C,1500.0,0,0,100,10.0
+```
 
-## 13. Considerações finais
+Os registros acima são fictícios e não identificam integrantes da equipe.
 
-O Sistema de Folha de Pagamento foi desenvolvido para aplicar conceitos de programação Java e Programação Orientada a Objetos em um cenário prático de gerenciamento de colaboradores.
+| Campo | Conteúdo |
+|---|---|
+| `TIPO` | Inteiro: 1 = padrão, 2 = comissionado, 3 = produção. |
+| `MATRICULA` | Identificador textual do colaborador; preserva zeros à esquerda. |
+| `NOME` | Nome do colaborador. |
+| `SALARIO_BASE` | Valor base, com ponto decimal e sem símbolo monetário. |
+| `VENDAS` | Valor das vendas; usado pelo tipo 2. |
+| `PERCENTUAL` | Comissão percentual; `5.0` significa 5%; usado pelo tipo 2. |
+| `QTD_PRODUZIDA` | Quantidade inteira; usada pelo tipo 3. |
+| `VALOR_UNIDADE` | Valor por unidade; usado pelo tipo 3. |
 
-A aplicação permite realizar operações de cadastro, consulta, edição e exclusão, além de fornecer funcionalidades de cálculo e apresentação da folha de pagamento.
+Os campos não utilizados pelo tipo são gravados como zero. Não use separadores de milhar. A implementação usa `split(",", -1)` e não oferece escape de campos CSV: **não inclua vírgulas ou quebras de linha em nomes ou matrículas**, mesmo entre aspas.
 
-A separação em camadas e a persistência em CSV contribuem para a organização do projeto e possibilitam sua evolução futura.
+### Leitura e gravação
 
----
+- O repositório carrega o CSV na inicialização. Se o arquivo não existir, inicia uma lista vazia e cria o arquivo na primeira gravação.
+- A primeira linha é descartada como cabeçalho; seu conteúdo não é validado. Linhas vazias são ignoradas.
+- Linhas com quantidade diferente de oito campos, tipos desconhecidos ou valores inválidos podem interromper a inicialização.
+- Cadastro, edição e exclusão trabalham sobre uma cópia da lista. A memória só é atualizada depois que a gravação termina com sucesso.
+- A gravação escreve um arquivo temporário no mesmo diretório e tenta substituir o CSV com `ATOMIC_MOVE`. Quando esse recurso não é suportado, utiliza substituição comum.
+- Falhas de gravação propagam `IOException` e são tratadas pelo `Main`. Erros de leitura são lançados durante a construção do repositório, antes do laço do menu, e podem encerrar o programa sem uma mensagem amigável.
 
-**Projeto acadêmico — Sistema de Folha de Pagamento**
+A matrícula duplicada é verificada no cadastro pelo serviço. A importação do CSV não verifica duplicatas. Evite editar o arquivo enquanto a aplicação estiver aberta: as operações posteriores regravam a lista que está em memória. Não há controle de acesso simultâneo por vários processos.
 
-Desenvolvido em Java.
+## 6. Estrutura de pastas e arquitetura
+
+### Estrutura existente na versão inspecionada
+
+```text
+folha_pagamento/
+├── README.md
+├── colaboradores_db.csv
+├── Folha_Pagamento.iml
+├── .gitignore
+├── src/
+│   ├── Main.java
+│   ├── dto/
+│   │   └── ColaboradorDTO.java
+│   ├── entities/
+│   │   ├── Colaborador.java
+│   │   ├── ColaboradorPadrao.java
+│   │   ├── ColaboradorComissionado.java
+│   │   └── ColaboradorProducao.java
+│   ├── repository/
+│   │   └── ColaboradorRepository.java
+│   └── service/
+│       ├── CadastroService.java
+│       └── FolhaPagamentoService.java
+└── out/                         # Saída de compilação local
+```
+
+Também existem metadados locais do IntelliJ (`.idea`) e do Git (`.git`). Eles não são camadas da aplicação. A presença local de um arquivo não significa que esteja versionado no repositório remoto.
+
+| Componente | Responsabilidade |
+|---|---|
+| `Main` | Menu, leitura de entradas, criação dos DTOs e chamadas aos serviços. |
+| `ColaboradorDTO` | `record` com os oito dados de cadastro/edição. |
+| `Colaborador` | Classe abstrata com dados comuns e contrato de cálculo salarial. |
+| Subclasses de `Colaborador` | Regras de remuneração específicas de cada tipo. |
+| `CadastroService` | Verificação de matrícula, criação das entidades e coordenação do cadastro, consulta, edição e exclusão. |
+| `FolhaPagamentoService` | Folha detalhada, resumo e folha individual; recebe `CadastroService` pelo construtor. |
+| `ColaboradorRepository` | Lista em memória, buscas e leitura/gravação do CSV. |
+
+Fluxos principais: `Main → CadastroService → ColaboradorRepository → CSV` e `Main → FolhaPagamentoService → entidades`. Na folha individual, o serviço de folha consulta o serviço de cadastro para localizar a matrícula.
+
+### Organização documental numerada de 01 a 11
+
+**Status: pendente.** As pastas numeradas não existem na versão inspecionada. A tabela apresenta uma proposta de organização para a entrega acadêmica; os nomes abaixo não foram confirmados com o enunciado original do professor. Se houver nomenclatura oficial, ela deverá prevalecer.
+
+| Pasta proposta | Conteúdo previsto |
+|---|---|
+| `01_Identificacao/` | Identificação do projeto e da equipe. |
+| `02_Objetivos/` | Objetivo geral, objetivos específicos e escopo. |
+| `03_Requisitos/` | Requisitos funcionais e não funcionais. |
+| `04_Casos_de_Uso/` | Diagramas e descrições dos casos de uso. |
+| `05_Modelagem/` | Diagrama de classes e regras de domínio. |
+| `06_Arquitetura/` | Camadas, responsabilidades e decisões técnicas. |
+| `07_Codigo_Fonte/` | Referência ao código mantido em `src/`. |
+| `08_Testes_Unitarios/` | Plano e evidências de JUnit 5. |
+| `09_Testes_Aceitacao/` | Plano e evidências de Robot Framework. |
+| `10_Evidencias/` | Registros reproduzíveis das verificações e resultados. |
+| `11_Entrega/` | Checklist e documentos finais. |
+
+Todas as onze pastas estão **planejadas, ainda não criadas**. O README não cria pastas nem comprova a existência dos documentos previstos. O código permanece em `src/`; os comandos de execução deste documento dependem dessa estrutura.
+
+## 7. Testes, evidências e pendências
+
+### Situação da validação
+
+| Verificação | Situação |
+|---|---|
+| Inspeção do código | Confirmados menu 0 a 7, uso de `Optional`, fórmulas salariais e persistência por arquivo temporário. |
+| Compilação nesta revisão | Aprovada com JDK 21.0.11 e `javac --release 21 -encoding UTF-8`, em cópia isolada dos fontes locais, em 30/10/2026. |
+| Execução nesta revisão | Aprovados cadastro e consulta de comissionado, opção 7 com matrícula existente e inexistente, folha detalhada e resumo. Para base 2000, vendas 10000 e comissão 5%, foram obtidos adicionais de 500 e salário final de 2500. Verificação pelo terminal, sem JUnit ou Robot. |
+| Reinicialização e exclusão nesta revisão | Em nova execução, o cadastro foi recuperado do CSV, a folha individual manteve os valores e a exclusão foi concluída. A permanência da exclusão após outra reinicialização não foi verificada nesta revisão. |
+| Testes anteriores pelo terminal | A revisão anterior relatou compilação com Java 21 e sucesso em cadastro, consulta, folha individual e exclusão. Esse relato não constitui relatório de suíte automatizada. |
+| JUnit 5 | Planejado; não há classes de teste, configuração de dependências ou relatórios na versão inspecionada. |
+| Robot Framework | Planejado; não há arquivos `.robot`, biblioteca de integração ou relatórios na versão inspecionada. |
+| Cobertura de testes | Não medida. |
+
+### Roteiro manual de regressão
+
+Execute em uma cópia isolada do projeto e do CSV. Registre entrada, saída, resultado esperado, resultado obtido, versão do JDK e data.
+
+| Cenário | Resultado esperado |
+|---|---|
+| Cadastrar cada um dos três tipos | Registro disponível na consulta e salário conforme a fórmula. |
+| Repetir uma matrícula no cadastro | Cadastro recusado sem duplicar a linha no CSV. |
+| Informar nome vazio ou valores negativos | Rejeição pelas validações correspondentes das entidades. |
+| Gerar folha individual para matrícula existente | Identificação, base, adicionais e salário final corretos. |
+| Buscar matrícula inexistente na opção 7 | Mensagem de colaborador não encontrado. |
+| Editar nome, remuneração e tipo | Novos dados preservados, com a mesma matrícula. |
+| Gerar detalhamento e resumo | Valores por colaborador e totais coerentes com a base. |
+| Encerrar e reabrir | Cadastros e alterações recuperados do CSV. |
+| Excluir e reabrir | Registro permanece excluído. |
+| Gerar relatórios com base vazia | Mensagem apropriada, sem falha. |
+| Simular falha de gravação em ambiente isolado | Operação não confirmada em memória; erro apresentado. |
+| Iniciar com CSV inválido | Falha de inicialização identificada; não presumir recuperação automática. |
+
+A tabela é um **plano de regressão**, não uma declaração de aprovação de todos os cenários.
+
+### JUnit 5 — planejamento e execução futura
+
+Prioridades: testar as três fórmulas, validações das entidades, duplicidade no serviço, retorno presente/vazio de `Optional`, persistência após reinicialização e preservação da memória quando a gravação falhar. Comparações de `double` devem usar tolerância.
+
+Antes de executar, é necessário configurar JUnit Jupiter e um executor, criar os testes e isolar o CSV. O caminho do arquivo é estático e relativo ao diretório de trabalho; sua injeção pelo construtor é uma melhoria recomendada para permitir testes com diretórios temporários.
+
+Exemplo de comando **somente após** configurar um projeto Maven com JUnit 5, Surefire e os diretórios de fontes/testes adequados:
+
+```powershell
+mvn test
+```
+
+O comando acima **não funciona como instrução imediata para a versão atual**, pois ela não contém `pom.xml`. Relatórios e resultados só deverão ser adicionados depois da execução real.
+
+### Robot Framework — planejamento e execução futura
+
+Prioridades: fluxos completos de cadastro, consulta, opção 7, edição, exclusão e reinicialização com persistência. Para automatizar a CLI interativa, será necessária uma biblioteca ou adaptador que controle o processo Java e verifique suas saídas. Não há interface web nem integração Selenium neste projeto.
+
+Com Python e pip instalados, a instalação opcional do framework pode ser feita em ambiente virtual:
+
+```powershell
+py -m venv .venv
+.\.venv\Scripts\python.exe -m pip install robotframework
+```
+
+Depois de implementar a integração, criar uma suíte em `tests/robot/` e compilar a aplicação, o comando previsto é:
+
+```powershell
+.\.venv\Scripts\python.exe -m robot --outputdir reports\robot tests\robot
+```
+
+`tests/robot/` e seus testes ainda não existem. Instalar o framework não implementa nem executa cenários por si só. Arquivos como `output.xml`, `log.html` e `report.html` deverão ser obtidos da execução real e avaliados antes de declarar aprovação.
+
+### Limitações e próximos passos
+
+- Preencher a identificação oficial dos integrantes.
+- Confirmar com o enunciado os nomes e conteúdos das pastas 01 a 11 e organizar os documentos.
+- Implementar e executar as suítes JUnit 5 e Robot Framework, registrando falhas e aprovações.
+- Melhorar validações de matrícula, caracteres incompatíveis com o CSV e valores não finitos (`NaN`/infinito). A comissão não possui limite superior de 100% no código atual.
+- Tratar erros de carregamento com mensagens amigáveis e ampliar as verificações de integridade do CSV.
+- Avaliar `BigDecimal` para valores monetários: a implementação atual usa `double` e formata os relatórios com duas casas decimais.
+
+Este README documenta a implementação inspecionada e separa funcionalidades existentes, verificações e entregas planejadas. Não declara a conclusão das pendências acadêmicas.
