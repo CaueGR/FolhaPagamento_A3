@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="FolhaPagamento_A3:jar">
+    <output-path>$PROJECT_DIR$/../FolhaPagamento_A3_jar</output-path>
+    <root id="archive" name="FolhaPagamento_A3.jar">
+      <element id="module-output" name="FolhaPagamento_A3" />
+    </root>
+  </artifact>
+</component>
