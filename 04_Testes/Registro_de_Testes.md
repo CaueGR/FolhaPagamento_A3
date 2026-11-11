@@ -60,8 +60,61 @@ Criação do arquivo pom.xml na raiz do projeto.
 Gerenciar as dependências e preparar a compilação e a execução
 dos testes automatizados de forma reproduzível.
 
+### Validação realizada
+Em 10/11/2026, foi executada a fase compile do Maven pelo IntelliJ.
+
+Resultado: BUILD SUCCESS.
+Foram compilados 9 arquivos Java com release 21.
+Os arquivos compilados foram gerados em target/classes.
+
+### Ajuste do ambiente
+A primeira tentativa falhou porque o Maven não conseguiu criar
+ou acessar o repositório local de dependências.
+
+O caminho foi alterado nas configurações do IntelliJ para
+C:\maven-repository. Após a alteração, a compilação terminou
+com sucesso. A causa exata da falha no caminho anterior
+não foi confirmada.
+
 ### Situação
-Arquivo de configuração criado.
-Importação e resolução das dependências aguardando confirmação.
-Compilação e execução dos testes ainda não verificadas.
+Compilação do código da aplicação confirmada.
+Execução de testes JUnit ainda não verificada.
 Cobertura ainda não medida.
+
+## Etapa 4 — Implementação do primeiro teste unitário
+
+### Caso de teste
+CT001 — Cálculo do salário do colaborador padrão.
+Requisitos relacionados: RF002 e RF006.
+
+### Implementação
+Arquivo: src/test/java/entities/ColaboradorPadraoTest.java
+Método: ct001_deveRetornarSalarioBaseComoSalarioFinal
+
+### Dados de entrada
+Matrícula: 1001.
+Nome: Ana.
+Salário-base: 2000.00.
+
+### Resultado esperado
+O método calcularSalarioFinal deve retornar 2000.00.
+A comparação utiliza tolerância de 0.001.
+
+### Execução e resultado
+Data: 10/11/2026, às 22h07, horário de Brasília.
+Execução: fase test do Maven, pelo IntelliJ IDEA.
+Classe executada: entities.ColaboradorPadraoTest.
+
+Testes executados: 1.
+Falhas: 0.
+Erros: 0.
+Ignorados: 0.
+Resultado do Maven: BUILD SUCCESS.
+
+O CT001 foi aprovado: o retorno do cálculo correspondeu
+ao valor esperado de 2000.00, dentro da tolerância de 0.001.
+
+### Alcance da verificação
+Foi verificado o cálculo do colaborador padrão com salário-base
+de 2000.00. Esse resultado não comprova os demais cenários
+nem representa uma medição de cobertura.
