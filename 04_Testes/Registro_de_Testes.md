@@ -118,3 +118,38 @@ ao valor esperado de 2000.00, dentro da tolerância de 0.001.
 Foi verificado o cálculo do colaborador padrão com salário-base
 de 2000.00. Esse resultado não comprova os demais cenários
 nem representa uma medição de cobertura.
+
+## Etapa 5 — Rejeição de salário-base negativo
+
+### Caso de teste
+CT002 — Rejeitar salário-base negativo.
+Regra relacionada: RN003.
+
+### Implementação
+Arquivo: src/test/java/entities/ColaboradorPadraoTest.java
+Método: ct002_deveRejeitarSalarioBaseNegativo
+
+### Dados de entrada
+Matrícula: 1002.
+Nome: Bruno.
+Salário-base: -500.00.
+
+### Resultado esperado
+Lançamento de IllegalArgumentException durante a construção,
+impedindo a criação do colaborador.
+
+### Estratégia
+Uso de assertThrows para verificar a rejeição do salário inválido.
+
+### Execução e resultado
+
+Em 18/11/2026, às 20h35 (horário de Brasília), a fase `test` do Maven
+executou o CT001 e o CT002. Ambos passaram, com zero falhas, zero erros
+e zero testes ignorados.
+
+**CT002 aprovado.** O construtor de `ColaboradorPadrao` rejeitou o
+salário-base de −R$ 500,00 ao lançar `IllegalArgumentException`,
+conforme a regra RN003.
+
+[Relatório por teste (XML)](Evidencias/CT002/TEST-entities.ColaboradorPadraoTest.xml)
+| [Resumo da execução (TXT)](Evidencias/CT002/entities.ColaboradorPadraoTest.txt)

@@ -1,6 +1,7 @@
 package entities;
 
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -17,5 +18,12 @@ class ColaboradorPadraoTest {
 
         // Verificar: comparar o resultado esperado com o obtido.
         assertEquals(2000.0, salarioFinal, 0.001);
+    }
+    @Test
+    void ct002_deveRejeitarSalarioBaseNegativo() {
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> new ColaboradorPadrao("1002", "Bruno", -500.0)
+        );
     }
 }
