@@ -153,3 +153,23 @@ conforme a regra RN003.
 
 [Relatório por teste (XML)](Evidencias/CT002/TEST-entities.ColaboradorPadraoTest.xml)
 | [Resumo da execução (TXT)](Evidencias/CT002/entities.ColaboradorPadraoTest.txt)
+
+## Etapa 6 — Cálculo do salário do colaborador comissionado
+
+**CT003 — Requisitos RF003 e RF006**
+
+O teste cria um colaborador com salário-base de R$ 2.000,00,
+vendas de R$ 10.000,00 e comissão de 5%.
+
+**Resultado esperado:** comissão de R$ 500,00 e salário final de R$ 2.500,00.
+### Execução e resultado
+
+Em 18/11/2026, às 21h14 (horário de Brasília), a fase `test` do Maven
+executou CT001, CT002 e CT003. Os três passaram, com zero falhas,
+zero erros e zero testes ignorados.
+
+**CT003 aprovado.** Para vendas de R$ 10.000,00 com comissão de 5%,
+o teste confirmou R$ 500,00 de comissão e salário final de R$ 2.500,00.
+
+[Relatório por teste (XML)](Evidencias/CT003/TEST-entities.ColaboradorComissionadoTest.xml)
+| [Resumo da execução (TXT)](Evidencias/CT003/entities.ColaboradorComissionadoTest.txt)
