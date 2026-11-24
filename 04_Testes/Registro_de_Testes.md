@@ -197,3 +197,11 @@ Os 5 testes passaram, com zero falhas e zero erros.
 Os 6 testes passaram, com zero falhas e zero erros.
 
 [Evidências do CT007](Evidencias/CT007/)
+
+## CT015 — Rejeição de valor de vendas negativo (RN004)
+
+**Aprovado em 24/11/2026.** Com salário-base de R$ 2.000,00 e comissão de 5%, o construtor de `ColaboradorComissionado` lançou `IllegalArgumentException` ao receber um valor de vendas de −R$ 1,00.
+
+Os 7 testes passaram, com zero falhas e zero erros.
+
+[Evidências do CT015](Evidencias/CT015/)
