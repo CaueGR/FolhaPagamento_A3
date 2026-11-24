@@ -213,3 +213,11 @@ Os 7 testes passaram, com zero falhas e zero erros.
 Os 8 testes passaram, com zero falhas e zero erros.
 
 [Evidências do CT016](Evidencias/CT016/)
+
+## CT017 — Rejeição de quantidade produzida negativa (RN006)
+
+**Aprovado em 24/11/2026.** Com salário-base de R$ 1.500,00 e valor de R$ 10,00 por unidade, o construtor de `ColaboradorProducao` lançou `IllegalArgumentException` ao receber `-1` como quantidade produzida.
+
+Os 9 testes passaram, com zero falhas e zero erros.
+
+[Evidências do CT017](Evidencias/CT017/)
