@@ -229,3 +229,11 @@ Os 9 testes passaram, com zero falhas e zero erros.
 Os 10 testes passaram, com zero falhas e zero erros.
 
 [Evidências do CT018](Evidencias/CT018/)
+
+## CT028 — Cálculo do salário com valores zero (RN003 a RN007)
+
+**Aprovado em 24/11/2026.** Os três tipos de colaborador aceitaram salário-base zero. Para o comissionado, as vendas e o percentual de comissão também foram zero. Para o colaborador por produção, a quantidade e o valor por unidade foram zero. Nos três casos, o salário final foi de R$ 0,00.
+
+Os 11 testes unitários passaram, com zero falhas e zero erros.
+
+[Evidências do CT028](Evidencias/CT028/)
