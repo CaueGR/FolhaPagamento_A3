@@ -189,3 +189,11 @@ Os 4 testes passaram, com zero falhas e zero erros.
 Os 5 testes passaram, com zero falhas e zero erros.
 
 [Evidências do CT005](Evidencias/CT005/)
+
+## CT007 — Rejeição de tipo de colaborador inválido (RNF002)
+
+**Aprovado em 24/11/2026.** Ao tentar cadastrar um colaborador com `tipo = 9`, o serviço lançou `IllegalArgumentException` com a mensagem “Tipo de colaborador inválido.”. O Mockito confirmou que o serviço não chamou `salvar()`.
+
+Os 6 testes passaram, com zero falhas e zero erros.
+
+[Evidências do CT007](Evidencias/CT007/)
