@@ -173,3 +173,11 @@ o teste confirmou R$ 500,00 de comissão e salário final de R$ 2.500,00.
 
 [Relatório por teste (XML)](Evidencias/CT003/TEST-entities.ColaboradorComissionadoTest.xml)
 | [Resumo da execução (TXT)](Evidencias/CT003/entities.ColaboradorComissionadoTest.txt)
+
+## CT004 — Cálculo do salário por produção
+
+**Aprovado em 24/11/2026.** Com salário-base de R$ 1.500,00 e 100 unidades a R$ 10,00 cada, o teste confirmou o adicional de R$ 1.000,00 e o salário final de R$ 2.500,00.
+
+Os 4 testes passaram, com zero falhas e zero erros.
+
+[Evidências do CT004](Evidencias/CT004/)
