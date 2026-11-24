@@ -205,3 +205,11 @@ Os 6 testes passaram, com zero falhas e zero erros.
 Os 7 testes passaram, com zero falhas e zero erros.
 
 [Evidências do CT015](Evidencias/CT015/)
+
+## CT016 — Rejeição de percentual de comissão negativo (RN005)
+
+**Aprovado em 24/11/2026.** Com salário-base de R$ 2.000,00 e vendas de R$ 10.000,00, o construtor de `ColaboradorComissionado` lançou `IllegalArgumentException` ao receber um percentual de comissão de −1%.
+
+Os 8 testes passaram, com zero falhas e zero erros.
+
+[Evidências do CT016](Evidencias/CT016/)

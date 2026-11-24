@@ -25,4 +25,10 @@ class ColaboradorComissionadoTest {
         assertThrows(IllegalArgumentException.class,
                 () -> new ColaboradorComissionado("1015", "Ana", 2000.0, -1.0, 5.0));
     }
+
+    @Test
+    void ct016_deveRejeitarPercentualDeComissaoNegativo() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new ColaboradorComissionado("1016", "Ana", 2000.0, 10000.0, -1.0));
+    }
 }
