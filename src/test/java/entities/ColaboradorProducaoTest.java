@@ -25,4 +25,10 @@ class ColaboradorProducaoTest {
         assertThrows(IllegalArgumentException.class,
                 () -> new ColaboradorProducao("1017", "Ana", 1500.0, -1, 10.0));
     }
+
+    @Test
+    void ct018_deveRejeitarValorPorUnidadeNegativo() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new ColaboradorProducao("1018", "Ana", 1500.0, 100, -1.0));
+    }
 }

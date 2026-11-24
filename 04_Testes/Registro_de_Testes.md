@@ -221,3 +221,11 @@ Os 8 testes passaram, com zero falhas e zero erros.
 Os 9 testes passaram, com zero falhas e zero erros.
 
 [Evidências do CT017](Evidencias/CT017/)
+
+## CT018 — Rejeição de valor por unidade negativo (RN007)
+
+**Aprovado em 24/11/2026.** Com salário-base de R$ 1.500,00 e 100 unidades produzidas, o construtor de `ColaboradorProducao` lançou `IllegalArgumentException` ao receber `-1.0` como valor por unidade.
+
+Os 10 testes passaram, com zero falhas e zero erros.
+
+[Evidências do CT018](Evidencias/CT018/)
