@@ -181,3 +181,11 @@ o teste confirmou R$ 500,00 de comissão e salário final de R$ 2.500,00.
 Os 4 testes passaram, com zero falhas e zero erros.
 
 [Evidências do CT004](Evidencias/CT004/)
+
+## CT005 — Rejeição de nome vazio e nome nulo (RN002)
+
+**Aprovado em 24/11/2026.** Ao criar um `ColaboradorPadrao` com nome vazio (`""`) ou nulo (`null`), o construtor lançou `IllegalArgumentException` nos dois casos.
+
+Os 5 testes passaram, com zero falhas e zero erros.
+
+[Evidências do CT005](Evidencias/CT005/)

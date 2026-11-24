@@ -26,4 +26,13 @@ class ColaboradorPadraoTest {
                 () -> new ColaboradorPadrao("1002", "Bruno", -500.0)
         );
     }
+
+    @Test
+    void ct005_deveRejeitarNomeVazioENomeNulo() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new ColaboradorPadrao("1005", "", 2000.0));
+
+        assertThrows(IllegalArgumentException.class,
+                () -> new ColaboradorPadrao("1005", null, 2000.0));
+    }
 }
