@@ -36,9 +36,10 @@ Aplicar conceitos de Programação Orientada a Objetos (abstração, herança, p
 ---
 
 ## 2. Integrantes da Equipe
-* **João Corso Sadowoy Martins** — RA: `[Preencher RA]`
-* **Cauê** — RA: `[Preencher RA]`
-* **Caio** — RA: `[Preencher RA]`
+* **João** 
+* **Cauê** 
+* **Caio** 
+* **Eduardo** 
 
 ---
 
