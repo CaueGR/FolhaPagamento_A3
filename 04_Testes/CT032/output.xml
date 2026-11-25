@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.5.1 (Python 3.14.7 on win32)" generated="2026-11-25T16:37:22.901755" rpa="false" schemaversion="5">
+<suite id="s1" name="CT032" source="D:\A3Qualidade\FolhaPagamento_A3\Testes\CT032">
+<suite id="s1-s1" name="Teste032" source="D:\A3Qualidade\FolhaPagamento_A3\Testes\CT032\teste032.robot">
+<test id="s1-s1-t1" name="CT032 - Validar Extensibilidade da Hierarquia de Colaboradores" line="19">
+<kw name="File Should Exist" owner="OperatingSystem">
+<msg time="2026-11-25T16:37:22.950316" level="TRACE">Arguments: [ 'D:/A3Qualidade/FolhaPagamento_A3/src/main/java/entities/Colaborador.java' ]</msg>
+<msg time="2026-11-25T16:37:22.950551" level="INFO" html="true">File '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\src\main\java\entities\Colaborador.java"&gt;D:\A3Qualidade\FolhaPagamento_A3\src\main\java\entities\Colaborador.java&lt;/a&gt;' exists.</msg>
+<msg time="2026-11-25T16:37:22.950597" level="TRACE">Return: None</msg>
+<arg>${SRC_DIR}/entities/Colaborador.java</arg>
+<doc>Fails unless the given `path` points to an existing file.</doc>
+<status status="PASS" start="2026-11-25T16:37:22.950204" elapsed="0.000429"/>
+</kw>
+<kw name="File Should Exist" owner="OperatingSystem">
+<msg time="2026-11-25T16:37:22.950909" level="TRACE">Arguments: [ 'D:/A3Qualidade/FolhaPagamento_A3/src/main/java/entities/ColaboradorPadrao.java' ]</msg>
+<msg time="2026-11-25T16:37:22.951130" level="INFO" html="true">File '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\src\main\java\entities\ColaboradorPadrao.java"&gt;D:\A3Qualidade\FolhaPagamento_A3\src\main\java\entities\ColaboradorPadrao.java&lt;/a&gt;' exists.</msg>
+<msg time="2026-11-25T16:37:22.951171" level="TRACE">Return: None</msg>
+<arg>${SRC_DIR}/entities/ColaboradorPadrao.java</arg>
+<doc>Fails unless the given `path` points to an existing file.</doc>
+<status status="PASS" start="2026-11-25T16:37:22.950824" elapsed="0.000378"/>
+</kw>
+<kw name="File Should Exist" owner="OperatingSystem">
+<msg time="2026-11-25T16:37:22.951412" level="TRACE">Arguments: [ 'D:/A3Qualidade/FolhaPagamento_A3/src/main/java/entities/ColaboradorComissionado.java' ]</msg>
+<msg time="2026-11-25T16:37:22.951596" level="INFO" html="true">File '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\src\main\java\entities\ColaboradorComissionado.java"&gt;D:\A3Qualidade\FolhaPagamento_A3\src\main\java\entities\ColaboradorComissionado.java&lt;/a&gt;' exists.</msg>
+<msg time="2026-11-25T16:37:22.951632" level="TRACE">Return: None</msg>
+<arg>${SRC_DIR}/entities/ColaboradorComissionado.java</arg>
+<doc>Fails unless the given `path` points to an existing file.</doc>
+<status status="PASS" start="2026-11-25T16:37:22.951349" elapsed="0.000313"/>
+</kw>
+<kw name="File Should Exist" owner="OperatingSystem">
+<msg time="2026-11-25T16:37:22.951864" level="TRACE">Arguments: [ 'D:/A3Qualidade/FolhaPagamento_A3/src/main/java/entities/ColaboradorProducao.java' ]</msg>
+<msg time="2026-11-25T16:37:22.952044" level="INFO" html="true">File '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\src\main\java\entities\ColaboradorProducao.java"&gt;D:\A3Qualidade\FolhaPagamento_A3\src\main\java\entities\ColaboradorProducao.java&lt;/a&gt;' exists.</msg>
+<msg time="2026-11-25T16:37:22.952093" level="TRACE">Return: None</msg>
+<arg>${SRC_DIR}/entities/ColaboradorProducao.java</arg>
+<doc>Fails unless the given `path` points to an existing file.</doc>
+<status status="PASS" start="2026-11-25T16:37:22.951799" elapsed="0.000325"/>
+</kw>
+<kw name="File Should Exist" owner="OperatingSystem">
+<msg time="2026-11-25T16:37:22.952319" level="TRACE">Arguments: [ 'D:/A3Qualidade/FolhaPagamento_A3/src/main/java/service/FolhaPagamentoService.java' ]</msg>
+<msg time="2026-11-25T16:37:22.952496" level="INFO" html="true">File '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\src\main\java\service\FolhaPagamentoService.java"&gt;D:\A3Qualidade\FolhaPagamento_A3\src\main\java\service\FolhaPagamentoService.java&lt;/a&gt;' exists.</msg>
+<msg time="2026-11-25T16:37:22.952532" level="TRACE">Return: None</msg>
+<arg>${SRC_DIR}/service/FolhaPagamentoService.java</arg>
+<doc>Fails unless the given `path` points to an existing file.</doc>
+<status status="PASS" start="2026-11-25T16:37:22.952258" elapsed="0.000300"/>
+</kw>
+<kw name="Get File" owner="OperatingSystem">
+<msg time="2026-11-25T16:37:22.952761" level="TRACE">Arguments: [ 'D:/A3Qualidade/FolhaPagamento_A3/src/main/java/entities/Colaborador.java' ]</msg>
+<msg time="2026-11-25T16:37:22.952804" level="INFO" html="true">Getting file '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\src\main\java\entities\Colaborador.java"&gt;D:\A3Qualidade\FolhaPagamento_A3\src\main\java\entities\Colaborador.java&lt;/a&gt;'.</msg>
+<msg time="2026-11-25T16:37:22.989105" level="TRACE">Return: 'package entities;\n\npublic abstract class Colaborador {\n    protected String matricula;\n    protected String nome;\n    protected double salarioBase;\n    //protected aonde quem esta dentro do pacote consegue acessar.\n\n    public Colaborador(String matricula, String nome, double salarioBase) {\n        if (nome == null || nome.trim().isEmpty()) throw new IllegalArgumentException("O nome é obrigatório");\n        //trim tira espaço sobrando no inicio e do final das aspas.\n        if (salarioBase &lt; 0) throw new IllegalArgumentException("Salário base não pode ser negativo");\n\n        this.matricula = matricula;\n        this.nome = nome;\n        this.salarioBase = salarioBase;\n    }\n\n    //quem vai acessar esses metodos é o service\n    public abstract double calcularSalarioFinal();\n    public abstract String getTipo();\n\n    public String getMatricula() {\n        return matricula;\n    }\n    public String getNome() {\n        return nome;\n    }\n    public double getSalarioBase() {\n        return salarioBase;\n    }\n}'</msg>
+<msg time="2026-11-25T16:37:22.989228" level="INFO">${colaborador_java} = package entities;
+
+public abstract class Colaborador {
+    protected String matricula;
+    protected String nome;
+    protected double salarioBase;
+    //protected aonde quem esta dentro do pacote con...</msg>
+<var>${colaborador_java}</var>
+<arg>${SRC_DIR}/entities/Colaborador.java</arg>
+<doc>Returns the contents of a specified file.</doc>
+<status status="PASS" start="2026-11-25T16:37:22.952701" elapsed="0.036556"/>
+</kw>
+<kw name="Get File" owner="OperatingSystem">
+<msg time="2026-11-25T16:37:22.989553" level="TRACE">Arguments: [ 'D:/A3Qualidade/FolhaPagamento_A3/src/main/java/entities/ColaboradorPadrao.java' ]</msg>
+<msg time="2026-11-25T16:37:22.989613" level="INFO" html="true">Getting file '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\src\main\java\entities\ColaboradorPadrao.java"&gt;D:\A3Qualidade\FolhaPagamento_A3\src\main\java\entities\ColaboradorPadrao.java&lt;/a&gt;'.</msg>
+<msg time="2026-11-25T16:37:22.995328" level="TRACE">Return: 'package entities;\n\npublic class ColaboradorPadrao extends Colaborador {\n    public ColaboradorPadrao(String matricula, String nome, double salarioBase) {\n        super(matricula, nome, salarioBase);\n    }\n\n    @Override\n    public double calcularSalarioFinal() { return salarioBase; }\n\n    @Override\n    public String getTipo() { return "Padrão"; }\n}'</msg>
+<msg time="2026-11-25T16:37:22.995449" level="INFO">${padrao_java} = package entities;
+
+public class ColaboradorPadrao extends Colaborador {
+    public ColaboradorPadrao(String matricula, String nome, double salarioBase) {
+        super(matricula, nome, salarioBase);
+ ...</msg>
+<var>${padrao_java}</var>
+<arg>${SRC_DIR}/entities/ColaboradorPadrao.java</arg>
+<doc>Returns the contents of a specified file.</doc>
+<status status="PASS" start="2026-11-25T16:37:22.989463" elapsed="0.006010"/>
+</kw>
+<kw name="Get File" owner="OperatingSystem">
+<msg time="2026-11-25T16:37:22.995797" level="TRACE">Arguments: [ 'D:/A3Qualidade/FolhaPagamento_A3/src/main/java/entities/ColaboradorComissionado.java' ]</msg>
+<msg time="2026-11-25T16:37:22.995854" level="INFO" html="true">Getting file '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\src\main\java\entities\ColaboradorComissionado.java"&gt;D:\A3Qualidade\FolhaPagamento_A3\src\main\java\entities\ColaboradorComissionado.java&lt;/a&gt;'.</msg>
+<msg time="2026-11-25T16:37:23.004984" level="TRACE">Return: 'package entities;\n\npublic class ColaboradorComissionado extends Colaborador {\n    private double valorVendas;\n    private double percentualComissao;\n\n    public ColaboradorComissionado(String matricula, String nome, double salarioBase, double valorVendas, double percentualComissao) {\n        super(matricula, nome, salarioBase);\n        if (valorVendas &lt; 0) throw new IllegalArgumentException("Valor de vendas não pode ser negativo");\n        if (percentualComissao &lt; 0) throw new IllegalArgumentException("Percentual de comissão não pode ser negativo");\n\n        this.valorVendas = valorVendas;\n        this.percentualComissao = percentualComissao;\n    }\n\n    @Override\n    public double calcularSalarioFinal() {\n        return salarioBase + (valorVendas * (percentualComissao / 100));\n    }\n\n    @Override\n    public String getTipo() { return "Comissionado"; }\n\n    // NOVOS GETTERS ADICIONADOS AQUI:\n    public double getValorVendas() { return valorVendas; }\n    public double getPercentualComissao() { return percentualComissao; }\n}'</msg>
+<msg time="2026-11-25T16:37:23.005088" level="INFO">${comissionado_java} = package entities;
+
+public class ColaboradorComissionado extends Colaborador {
+    private double valorVendas;
+    private double percentualComissao;
+
+    public ColaboradorComissionado(String matricul...</msg>
+<var>${comissionado_java}</var>
+<arg>${SRC_DIR}/entities/ColaboradorComissionado.java</arg>
+<doc>Returns the contents of a specified file.</doc>
+<status status="PASS" start="2026-11-25T16:37:22.995704" elapsed="0.009414"/>
+</kw>
+<kw name="Get File" owner="OperatingSystem">
+<msg time="2026-11-25T16:37:23.005425" level="TRACE">Arguments: [ 'D:/A3Qualidade/FolhaPagamento_A3/src/main/java/entities/ColaboradorProducao.java' ]</msg>
+<msg time="2026-11-25T16:37:23.005489" level="INFO" html="true">Getting file '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\src\main\java\entities\ColaboradorProducao.java"&gt;D:\A3Qualidade\FolhaPagamento_A3\src\main\java\entities\ColaboradorProducao.java&lt;/a&gt;'.</msg>
+<msg time="2026-11-25T16:37:23.020113" level="TRACE">Return: 'package entities;\n\npublic class ColaboradorProducao extends Colaborador {\n    private int quantidadeProduzida;\n    private double valorPorUnidade;\n\n    public ColaboradorProducao(String matricula, String nome, double salarioBase, int quantidadeProduzida, double valorPorUnidade) {\n        super(matricula, nome, salarioBase);\n        if (quantidadeProduzida &lt; 0) throw new IllegalArgumentException("Quantidade produzida não pode ser negativa");\n        if (valorPorUnidade &lt; 0) throw new IllegalArgumentException("Valor por unidade não pode ser negativo");\n\n        this.quantidadeProduzida = quantidadeProduzida;\n        this.valorPorUnidade = valorPorUnidade;\n    }\n\n    @Override\n    public double calcularSalarioFinal() {\n        return salarioBase + (quantidadeProduzida * valorPorUnidade);\n    }\n\n    @Override\n    public String getTipo() { return "Produção"; }\n\n    public int getQuantidadeProduzida() { return quantidadeProduzida; }\n    public double getValorPorUnidade() { return valorPorUnidade; }\n}'</msg>
+<msg time="2026-11-25T16:37:23.020220" level="INFO">${producao_java} = package entities;
+
+public class ColaboradorProducao extends Colaborador {
+    private int quantidadeProduzida;
+    private double valorPorUnidade;
+
+    public ColaboradorProducao(String matricula, Str...</msg>
+<var>${producao_java}</var>
+<arg>${SRC_DIR}/entities/ColaboradorProducao.java</arg>
+<doc>Returns the contents of a specified file.</doc>
+<status status="PASS" start="2026-11-25T16:37:23.005330" elapsed="0.014918"/>
+</kw>
+<kw name="Get File" owner="OperatingSystem">
+<msg time="2026-11-25T16:37:23.020661" level="TRACE">Arguments: [ 'D:/A3Qualidade/FolhaPagamento_A3/src/main/java/service/FolhaPagamentoService.java' ]</msg>
+<msg time="2026-11-25T16:37:23.020719" level="INFO" html="true">Getting file '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\src\main\java\service\FolhaPagamentoService.java"&gt;D:\A3Qualidade\FolhaPagamento_A3\src\main\java\service\FolhaPagamentoService.java&lt;/a&gt;'.</msg>
+<msg time="2026-11-25T16:37:23.039685" level="TRACE">Return: 'package service;\n\nimport entities.Colaborador;\nimport java.util.HashMap;\nimport java.util.List;\nimport java.util.Map;\n\npublic class FolhaPagamentoService {\n\n    private final CadastroService cadastroService;\n\n    public FolhaPagamentoService(CadastroService cadastroService) {\n        this.cadastroService = cadastroService;\n    }\n\n    public void gerarFolhaDetalhada(List&lt;Colaborador&gt; colaboradores) {\n        System.out.println("\\n--- RELATÓRIO: FOLHA DE PAGAMENTO DETALHADA ---");\n\n        if (colaboradores.isEmpty()) {\n            System.out.println("Nenhum colaborador cadastrado.");\n            return;\n        }\n\n        for (Colaborador c : colaboradores) {\n            double salarioFinal = c.calcularSalarioFinal();\n            double adicionais = salarioFinal - c.getSalarioBase();\n\n            System.out.printf(\n                    "Matrícula: %-5s | Nome: %-15s | Tipo: %-12s | Base: R$ %8.2f | Adicionais: R$ %8.2f | FINAL: R$ %8.2f%n",\n                    c.getMatricula(),\n                    c.getNome(),\n                    c.getTipo(),\n                    c.getSalarioBase(),\n                    adicionais,\n                    salarioFinal\n            );\n        }\n    }\n\n    public void gerarResumo(List&lt;Colaborador&gt; colaboradores) {\n        System.out.println("\\n--- RELATÓRIO: RESUMO DA FOLHA ---");\n\n        if (colaboradores.isEmpty()) {\n            System.out.println("Nenhum colaborador cadastrado para o resumo.");\n            return;\n        }\n\n        double totalGeral = 0;\n        Map&lt;String, Double&gt; totaisPorCategoria = new HashMap&lt;&gt;();\n\n        for (Colaborador c : colaboradores) {\n            double salarioFinal = c.calcularSalarioFinal();\n            totalGeral += salarioFinal;\n\n            String categoria = c.getTipo();\n\n            totaisPorCategoria.put(\n                    categoria,\n                    totaisPorCategoria.getOrDefault(categoria, 0.0)\n                            + salarioFinal\n            );\n        }\n\n        System.out.println(\n                "Quantidade de Colaboradores: " + colaboradores.size()\n        );\n\n        System.out.printf(\n                "Custo Total Geral da Folha: R$ %.2f%n",\n                totalGeral\n        );\n\n        System.out.println("\\n--- Total Pago por Categoria ---");\n\n        for (Map.Entry&lt;String, Double&gt; entry : totaisPorCategoria.entrySet()) {\n            System.out.printf(\n                    "Categoria %-12s : R$ %10.2f%n",\n                    entry.getKey(),\n                    entry.getValue()\n            );\n        }\n    }\n\n    public void gerarFolhaIndividual(String matricula) {\n        cadastroService.buscarPorMatricula(matricula).ifPresentOrElse(\n                colaborador -&gt; {\n                    double salarioFinal =\n                            colaborador.calcularSalarioFinal();\n\n                    double adicionais =\n                            salarioFinal - colaborador.getSalarioBase();\n\n                    System.out.println("\\n--- FOLHA INDIVIDUAL ---");\n\n                    System.out.println(\n                            "Matrícula: " + colaborador.getMatricula()\n                    );\n\n                    System.out.println(\n                            "Nome: " + colaborador.getNome()\n                    );\n\n                    System.out.println(\n                            "Tipo: " + colaborador.getTipo()\n                    );\n\n                    System.out.printf(\n                            "Salário Base: R$ %.2f%n",\n                            colaborador.getSalarioBase()\n                    );\n\n                    System.out.printf(\n                            "Adicionais: R$ %.2f%n",\n                            adicionais\n                    );\n\n                    System.out.printf(\n                            "Salário Final: R$ %.2f%n",\n                            salarioFinal\n                    );\n                },\n                () -&gt; System.out.println(\n                        "[ERRO] Colaborador não encontrado."\n                )\n        );\n    }\n}'</msg>
+<msg time="2026-11-25T16:37:23.039860" level="INFO">${folha_service} = package service;
+
+import entities.Colaborador;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class FolhaPagamentoService {
+
+    private final CadastroService cadastroS...</msg>
+<var>${folha_service}</var>
+<arg>${SRC_DIR}/service/FolhaPagamentoService.java</arg>
+<doc>Returns the contents of a specified file.</doc>
+<status status="PASS" start="2026-11-25T16:37:23.020574" elapsed="0.019315"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-11-25T16:37:23.040290" level="TRACE">Arguments: [ 'Verificando contrato polimorfico em Colaborador.java e FolhaPagamentoService.java' ]</msg>
+<msg time="2026-11-25T16:37:23.040354" level="INFO">Verificando contrato polimorfico em Colaborador.java e FolhaPagamentoService.java</msg>
+<msg time="2026-11-25T16:37:23.040384" level="TRACE">Return: None</msg>
+<arg>Verificando contrato polimorfico em Colaborador.java e FolhaPagamentoService.java</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-11-25T16:37:23.040089" elapsed="0.000322"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2026-11-25T16:37:23.040964" level="TRACE">Arguments: [ 'package entities;\n\npublic abstract class Colaborador {\n    protected String matricula;\n    protected String nome;\n    protected double salarioBase;\n    //protected aonde quem esta dentro do pacote consegue acessar.\n\n    public Colaborador(String matricula, String nome, double salarioBase) {\n        if (nome == null || nome.trim().isEmpty()) throw new IllegalArgumentException("O nome é obrigatório");\n        //trim tira espaço sobrando no inicio e do final das aspas.\n        if (salarioBase &lt; 0) throw new IllegalArgumentException("Salário base não pode ser negativo");\n\n        this.matricula = matricula;\n        this.nome = nome;\n        this.salarioBase = salarioBase;\n    }\n\n    //quem vai acessar esses metodos é o service\n    public abstract double calcularSalarioFinal();\n    public abstract String getTipo();\n\n    public String getMatricula() {\n        return matricula;\n    }\n    public String getNome() {\n        return nome;\n    }\n    public double getSalarioBase() {\n        return salarioBase;\n    }\n}' | 'abstract class Colaborador' ]</msg>
+<msg time="2026-11-25T16:37:23.041040" level="TRACE">Return: None</msg>
+<arg>${colaborador_java}</arg>
+<arg>abstract class Colaborador</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-25T16:37:23.040594" elapsed="0.000471"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2026-11-25T16:37:23.041473" level="TRACE">Arguments: [ 'package entities;\n\npublic abstract class Colaborador {\n    protected String matricula;\n    protected String nome;\n    protected double salarioBase;\n    //protected aonde quem esta dentro do pacote consegue acessar.\n\n    public Colaborador(String matricula, String nome, double salarioBase) {\n        if (nome == null || nome.trim().isEmpty()) throw new IllegalArgumentException("O nome é obrigatório");\n        //trim tira espaço sobrando no inicio e do final das aspas.\n        if (salarioBase &lt; 0) throw new IllegalArgumentException("Salário base não pode ser negativo");\n\n        this.matricula = matricula;\n        this.nome = nome;\n        this.salarioBase = salarioBase;\n    }\n\n    //quem vai acessar esses metodos é o service\n    public abstract double calcularSalarioFinal();\n    public abstract String getTipo();\n\n    public String getMatricula() {\n        return matricula;\n    }\n    public String getNome() {\n        return nome;\n    }\n    public double getSalarioBase() {\n        return salarioBase;\n    }\n}' | 'calcularSalario' ]</msg>
+<msg time="2026-11-25T16:37:23.041547" level="TRACE">Return: None</msg>
+<arg>${colaborador_java}</arg>
+<arg>calcularSalario</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-25T16:37:23.041246" elapsed="0.000326"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2026-11-25T16:37:23.041884" level="TRACE">Arguments: [ 'package entities;\n\npublic class ColaboradorPadrao extends Colaborador {\n    public ColaboradorPadrao(String matricula, String nome, double salarioBase) {\n        super(matricula, nome, salarioBase);\n    }\n\n    @Override\n    public double calcularSalarioFinal() { return salarioBase; }\n\n    @Override\n    public String getTipo() { return "Padrão"; }\n}' | 'extends Colaborador' ]</msg>
+<msg time="2026-11-25T16:37:23.041940" level="TRACE">Return: None</msg>
+<arg>${padrao_java}</arg>
+<arg>extends Colaborador</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-25T16:37:23.041722" elapsed="0.000242"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2026-11-25T16:37:23.042323" level="TRACE">Arguments: [ 'package entities;\n\npublic class ColaboradorComissionado extends Colaborador {\n    private double valorVendas;\n    private double percentualComissao;\n\n    public ColaboradorComissionado(String matricula, String nome, double salarioBase, double valorVendas, double percentualComissao) {\n        super(matricula, nome, salarioBase);\n        if (valorVendas &lt; 0) throw new IllegalArgumentException("Valor de vendas não pode ser negativo");\n        if (percentualComissao &lt; 0) throw new IllegalArgumentException("Percentual de comissão não pode ser negativo");\n\n        this.valorVendas = valorVendas;\n        this.percentualComissao = percentualComissao;\n    }\n\n    @Override\n    public double calcularSalarioFinal() {\n        return salarioBase + (valorVendas * (percentualComissao / 100));\n    }\n\n    @Override\n    public String getTipo() { return "Comissionado"; }\n\n    // NOVOS GETTERS ADICIONADOS AQUI:\n    public double getValorVendas() { return valorVendas; }\n    public double getPercentualComissao() { return percentualComissao; }\n}' | 'extends Colaborador' ]</msg>
+<msg time="2026-11-25T16:37:23.042495" level="TRACE">Return: None</msg>
+<arg>${comissionado_java}</arg>
+<arg>extends Colaborador</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-25T16:37:23.042133" elapsed="0.000392"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2026-11-25T16:37:23.042835" level="TRACE">Arguments: [ 'package entities;\n\npublic class ColaboradorProducao extends Colaborador {\n    private int quantidadeProduzida;\n    private double valorPorUnidade;\n\n    public ColaboradorProducao(String matricula, String nome, double salarioBase, int quantidadeProduzida, double valorPorUnidade) {\n        super(matricula, nome, salarioBase);\n        if (quantidadeProduzida &lt; 0) throw new IllegalArgumentException("Quantidade produzida não pode ser negativa");\n        if (valorPorUnidade &lt; 0) throw new IllegalArgumentException("Valor por unidade não pode ser negativo");\n\n        this.quantidadeProduzida = quantidadeProduzida;\n        this.valorPorUnidade = valorPorUnidade;\n    }\n\n    @Override\n    public double calcularSalarioFinal() {\n        return salarioBase + (quantidadeProduzida * valorPorUnidade);\n    }\n\n    @Override\n    public String getTipo() { return "Produção"; }\n\n    public int getQuantidadeProduzida() { return quantidadeProduzida; }\n    public double getValorPorUnidade() { return valorPorUnidade; }\n}' | 'extends Colaborador' ]</msg>
+<msg time="2026-11-25T16:37:23.042901" level="TRACE">Return: None</msg>
+<arg>${producao_java}</arg>
+<arg>extends Colaborador</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-25T16:37:23.042671" elapsed="0.000254"/>
+</kw>
+<kw name="Should Not Contain" owner="BuiltIn">
+<msg time="2026-11-25T16:37:23.043230" level="TRACE">Arguments: [ 'package service;\n\nimport entities.Colaborador;\nimport java.util.HashMap;\nimport java.util.List;\nimport java.util.Map;\n\npublic class FolhaPagamentoService {\n\n    private final CadastroService cadastroService;\n\n    public FolhaPagamentoService(CadastroService cadastroService) {\n        this.cadastroService = cadastroService;\n    }\n\n    public void gerarFolhaDetalhada(List&lt;Colaborador&gt; colaboradores) {\n        System.out.println("\\n--- RELATÓRIO: FOLHA DE PAGAMENTO DETALHADA ---");\n\n        if (colaboradores.isEmpty()) {\n            System.out.println("Nenhum colaborador cadastrado.");\n            return;\n        }\n\n        for (Colaborador c : colaboradores) {\n            double salarioFinal = c.calcularSalarioFinal();\n            double adicionais = salarioFinal - c.getSalarioBase();\n\n            System.out.printf(\n                    "Matrícula: %-5s | Nome: %-15s | Tipo: %-12s | Base: R$ %8.2f | Adicionais: R$ %8.2f | FINAL: R$ %8.2f%n",\n                    c.getMatricula(),\n                    c.getNome(),\n                    c.getTipo(),\n                    c.getSalarioBase(),\n                    adicionais,\n                    salarioFinal\n            );\n        }\n    }\n\n    public void gerarResumo(List&lt;Colaborador&gt; colaboradores) {\n        System.out.println("\\n--- RELATÓRIO: RESUMO DA FOLHA ---");\n\n        if (colaboradores.isEmpty()) {\n            System.out.println("Nenhum colaborador cadastrado para o resumo.");\n            return;\n        }\n\n        double totalGeral = 0;\n        Map&lt;String, Double&gt; totaisPorCategoria = new HashMap&lt;&gt;();\n\n        for (Colaborador c : colaboradores) {\n            double salarioFinal = c.calcularSalarioFinal();\n            totalGeral += salarioFinal;\n\n            String categoria = c.getTipo();\n\n            totaisPorCategoria.put(\n                    categoria,\n                    totaisPorCategoria.getOrDefault(categoria, 0.0)\n                            + salarioFinal\n            );\n        }\n\n        System.out.println(\n                "Quantidade de Colaboradores: " + colaboradores.size()\n        );\n\n        System.out.printf(\n                "Custo Total Geral da Folha: R$ %.2f%n",\n                totalGeral\n        );\n\n        System.out.println("\\n--- Total Pago por Categoria ---");\n\n        for (Map.Entry&lt;String, Double&gt; entry : totaisPorCategoria.entrySet()) {\n            System.out.printf(\n                    "Categoria %-12s : R$ %10.2f%n",\n                    entry.getKey(),\n                    entry.getValue()\n            );\n        }\n    }\n\n    public void gerarFolhaIndividual(String matricula) {\n        cadastroService.buscarPorMatricula(matricula).ifPresentOrElse(\n                colaborador -&gt; {\n                    double salarioFinal =\n                            colaborador.calcularSalarioFinal();\n\n                    double adicionais =\n                            salarioFinal - colaborador.getSalarioBase();\n\n                    System.out.println("\\n--- FOLHA INDIVIDUAL ---");\n\n                    System.out.println(\n                            "Matrícula: " + colaborador.getMatricula()\n                    );\n\n                    System.out.println(\n                            "Nome: " + colaborador.getNome()\n                    );\n\n                    System.out.println(\n                            "Tipo: " + colaborador.getTipo()\n                    );\n\n                    System.out.printf(\n                            "Salário Base: R$ %.2f%n",\n                            colaborador.getSalarioBase()\n                    );\n\n                    System.out.printf(\n                            "Adicionais: R$ %.2f%n",\n                            adicionais\n                    );\n\n                    System.out.printf(\n                            "Salário Final: R$ %.2f%n",\n                            salarioFinal\n                    );\n                },\n                () -&gt; System.out.println(\n                        "[ERRO] Colaborador não encontrado."\n                )\n        );\n    }\n}' | 'instanceof' ]</msg>
+<msg time="2026-11-25T16:37:23.043340" level="TRACE">Return: None</msg>
+<arg>${folha_service}</arg>
+<arg>instanceof</arg>
+<doc>Fails if the `container` contains the `item`.</doc>
+<status status="PASS" start="2026-11-25T16:37:23.043069" elapsed="0.000295"/>
+</kw>
+<doc>Valida o RNF003 verificando polimorfismo na classe base e desacoplamento no calculo da folha.</doc>
+<status status="PASS" start="2026-11-25T16:37:22.949428" elapsed="0.094200"/>
+</test>
+<doc>Suite de testes de arquitetura - CT032 (Extensibilidade Orientada a Objetos)</doc>
+<status status="PASS" start="2026-11-25T16:37:22.940352" elapsed="0.104205"/>
+</suite>
+<status status="PASS" start="2026-11-25T16:37:22.903504" elapsed="0.142261"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="CT032" id="s1" pass="1" fail="0" skip="0">CT032</stat>
+<stat name="Teste032" id="s1-s1" pass="1" fail="0" skip="0">CT032.Teste032</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

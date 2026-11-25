@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.5.1 (Python 3.14.7 on win32)" generated="2026-11-25T16:35:50.879134" rpa="false" schemaversion="5">
+<suite id="s1" name="CT031" source="D:\A3Qualidade\FolhaPagamento_A3\Testes\CT031">
+<suite id="s1-s1" name="Teste031" source="D:\A3Qualidade\FolhaPagamento_A3\Testes\CT031\teste031.robot">
+<test id="s1-s1-t1" name="CT031 - Validar Fluxo Completo de Usabilidade via Terminal" line="22">
+<kw name="Create Directory" owner="OperatingSystem">
+<msg time="2026-11-25T16:35:50.932053" level="TRACE">Arguments: [ 'D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT031/temp_test_dir' ]</msg>
+<msg time="2026-11-25T16:35:50.932526" level="INFO" html="true">Created directory '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\Testes\CT031\temp_test_dir"&gt;D:\A3Qualidade\FolhaPagamento_A3\Testes\CT031\temp_test_dir&lt;/a&gt;'.</msg>
+<msg time="2026-11-25T16:35:50.932573" level="TRACE">Return: None</msg>
+<arg>${TEMP_DIR}</arg>
+<doc>Creates the specified directory.</doc>
+<status status="PASS" start="2026-11-25T16:35:50.931932" elapsed="0.000679"/>
+</kw>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2026-11-25T16:35:50.932946" level="TRACE">Arguments: [ 'D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT031/temp_test_dir/colaboradores_db.csv' ]</msg>
+<msg time="2026-11-25T16:35:50.933182" level="INFO" html="true">File '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\Testes\CT031\temp_test_dir\colaboradores_db.csv"&gt;D:\A3Qualidade\FolhaPagamento_A3\Testes\CT031\temp_test_dir\colaboradores_db.csv&lt;/a&gt;' does not exist.</msg>
+<msg time="2026-11-25T16:35:50.933229" level="TRACE">Return: None</msg>
+<arg>${CSV_FILE}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2026-11-25T16:35:50.932848" elapsed="0.000417"/>
+</kw>
+<kw name="Catenate" owner="BuiltIn">
+<msg time="2026-11-25T16:35:50.933695" level="TRACE">Arguments: [ 'SEPARATOR=\n' | '1' | '1' | '2001' | 'Lucas' | '3000' | '2' | '6' | '2001' | '1' | 'Lucas' | '3500' | '7' | '2001' | '4' | '5' | '3' | '2001' | '0' ]</msg>
+<msg time="2026-11-25T16:35:50.933793" level="TRACE">Return: '1\n1\n2001\nLucas\n3000\n2\n6\n2001\n1\nLucas\n3500\n7\n2001\n4\n5\n3\n2001\n0'</msg>
+<msg time="2026-11-25T16:35:50.933852" level="INFO">${fluxo_e2e} = 1
+1
+2001
+Lucas
+3000
+2
+6
+2001
+1
+Lucas
+3500
+7
+2001
+4
+5
+3
+2001
+0</msg>
+<var>${fluxo_e2e}</var>
+<arg>SEPARATOR=\n</arg>
+<arg>1</arg>
+<arg>1</arg>
+<arg>2001</arg>
+<arg>Lucas</arg>
+<arg>3000</arg>
+<arg>2</arg>
+<arg>6</arg>
+<arg>2001</arg>
+<arg>1</arg>
+<arg>Lucas</arg>
+<arg>3500</arg>
+<arg>7</arg>
+<arg>2001</arg>
+<arg>4</arg>
+<arg>5</arg>
+<arg>3</arg>
+<arg>2001</arg>
+<arg>0</arg>
+<doc>Concatenates the given items together and returns the resulted string.</doc>
+<status status="PASS" start="2026-11-25T16:35:50.933439" elapsed="0.000433"/>
+</kw>
+<kw name="Create File" owner="OperatingSystem">
+<msg time="2026-11-25T16:35:50.934154" level="TRACE">Arguments: [ 'D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT031/temp_test_dir/inputs_ct031.txt' | '1\n1\n2001\nLucas\n3000\n2\n6\n2001\n1\nLucas\n3500\n7\n2001\n4\n5\n3\n2001\n0\n' ]</msg>
+<msg time="2026-11-25T16:35:50.934608" level="INFO" html="true">Created file '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\Testes\CT031\temp_test_dir\inputs_ct031.txt"&gt;D:\A3Qualidade\FolhaPagamento_A3\Testes\CT031\temp_test_dir\inputs_ct031.txt&lt;/a&gt;'.</msg>
+<msg time="2026-11-25T16:35:50.934647" level="TRACE">Return: None</msg>
+<arg>${TEMP_DIR}/inputs_ct031.txt</arg>
+<arg>${fluxo_e2e}\n</arg>
+<doc>Creates a file with the given content and encoding.</doc>
+<status status="PASS" start="2026-11-25T16:35:50.934049" elapsed="0.000628"/>
+</kw>
+<kw name="Run Process" owner="Process">
+<msg time="2026-11-25T16:35:50.935257" level="TRACE">Arguments: [ 'java' | '-jar' | 'D:/A3Qualidade/FolhaPagamento_A3/FolhaPagamento_A3_jar/FolhaPagamento_A3.jar' | cwd='D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT031/temp_test_dir' | stdin='D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT031/temp_test_dir/inputs_ct031.txt' | timeout=datetime.timedelta(seconds=10) ]</msg>
+<msg time="2026-11-25T16:35:50.941280" level="INFO">Starting process:
+java -jar D:/A3Qualidade/FolhaPagamento_A3/FolhaPagamento_A3_jar/FolhaPagamento_A3.jar</msg>
+<msg time="2026-11-25T16:35:50.941329" level="DEBUG">Process configuration:
+cwd:     D:\A3Qualidade\FolhaPagamento_A3\Testes\CT031\temp_test_dir
+shell:   False
+stdout:  PIPE
+stderr:  PIPE
+stdin:   D:\A3Qualidade\FolhaPagamento_A3\Testes\CT031\temp_test_dir\inputs_ct031.txt
+alias:   None
+env:     None</msg>
+<msg time="2026-11-25T16:35:50.946267" level="INFO">Waiting for process to complete.</msg>
+<msg time="2026-11-25T16:35:51.248015" level="INFO">Process completed.</msg>
+<msg time="2026-11-25T16:35:51.248107" level="TRACE">Return: &lt;robot.libraries.Process.ProcessResult object at 0x000001A05D30BA10&gt;</msg>
+<msg time="2026-11-25T16:35:51.248215" level="INFO">${result} = &lt;result object with rc 0&gt;</msg>
+<var>${result}</var>
+<arg>java</arg>
+<arg>-jar</arg>
+<arg>${JAR_PATH}</arg>
+<arg>cwd=${TEMP_DIR}</arg>
+<arg>stdin=${TEMP_DIR}/inputs_ct031.txt</arg>
+<arg>timeout=10s</arg>
+<doc>Runs a process and waits for it to complete.</doc>
+<status status="PASS" start="2026-11-25T16:35:50.934858" elapsed="0.313382"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-11-25T16:35:51.248930" level="TRACE">Arguments: [ 'STDOUT: \n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Tipo (1-PadrÒo, 2-Comissionado, 3-ProduþÒo): \nMatrÝcula: Nome: Salßrio Base: R$ [OK] Colaborador Lucas cadastrado com sucesso.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- LISTA DE COLABORADORES ---\nMatrÝcula: 2001 | Nome: Lucas | Tipo: PadrÒo\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador que deseja editar: Qual serß o NOVO tipo? (1-PadrÒo, 2-Comissionado, 3-ProduþÒo): \nNovo Nome: Novo Salßrio Base: R$ [OK] Colaborador Lucas atualizado com sucesso.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: \n--- FOLHA INDIVIDUAL ---\nMatrÝcula: 2001\nNome: Lucas\nTipo: PadrÒo\nSalßrio Base: R$ 3500,00\nAdicionais: R$ 0,00\nSalßrio Final: R$ 3500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: FOLHA DE PAGAMENTO DETALHADA ---\nMatrÝcula: 2001  | Nome: Lucas           | Tipo: PadrÒo       | Base: R$  3500,00 | Adicionais: R$     0,00 | FINAL: R$  3500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: RESUMO DA FOLHA ---\nQuantidade de Colaboradores: 1\nCusto Total Geral da Folha: R$ 3500,00\n\n--- Total Pago por Categoria ---\nCategoria PadrÒo       : R$    3500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: MatrÝcula a ser excluÝda: [OK] Colaborador com matrÝcula 2001 excluÝdo com sucesso.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' ]</msg>
+<msg time="2026-11-25T16:35:51.249057" level="INFO">STDOUT: 
+==================================
+   SISTEMA DE FOLHA DE PAGAMENTO  
+==================================
+1. Cadastrar Colaborador
+2. Consultar Colaboradores
+3. Excluir Colaborador
+4. Gerar Folha Detalhada
+5. Emitir Resumo da Folha
+6. Editar Colaborador
+7. Gerar Folha Individual
+0. Sair
+Escolha uma opþÒo: Tipo (1-PadrÒo, 2-Comissionado, 3-ProduþÒo): 
+MatrÝcula: Nome: Salßrio Base: R$ [OK] Colaborador Lucas cadastrado com sucesso.
+
+==================================
+   SISTEMA DE FOLHA DE PAGAMENTO  
+==================================
+1. Cadastrar Colaborador
+2. Consultar Colaboradores
+3. Excluir Colaborador
+4. Gerar Folha Detalhada
+5. Emitir Resumo da Folha
+6. Editar Colaborador
+7. Gerar Folha Individual
+0. Sair
+Escolha uma opþÒo: 
+--- LISTA DE COLABORADORES ---
+MatrÝcula: 2001 | Nome: Lucas | Tipo: PadrÒo
+
+==================================
+   SISTEMA DE FOLHA DE PAGAMENTO  
+==================================
+1. Cadastrar Colaborador
+2. Consultar Colaboradores
+3. Excluir Colaborador
+4. Gerar Folha Detalhada
+5. Emitir Resumo da Folha
+6. Editar Colaborador
+7. Gerar Folha Individual
+0. Sair
+Escolha uma opþÒo: Digite a matrÝcula do colaborador que deseja editar: Qual serß o NOVO tipo? (1-PadrÒo, 2-Comissionado, 3-ProduþÒo): 
+Novo Nome: Novo Salßrio Base: R$ [OK] Colaborador Lucas atualizado com sucesso.
+
+==================================
+   SISTEMA DE FOLHA DE PAGAMENTO  
+==================================
+1. Cadastrar Colaborador
+2. Consultar Colaboradores
+3. Excluir Colaborador
+4. Gerar Folha Detalhada
+5. Emitir Resumo da Folha
+6. Editar Colaborador
+7. Gerar Folha Individual
+0. Sair
+Escolha uma opþÒo: Digite a matrÝcula do colaborador: 
+--- FOLHA INDIVIDUAL ---
+MatrÝcula: 2001
+Nome: Lucas
+Tipo: PadrÒo
+Salßrio Base: R$ 3500,00
+Adicionais: R$ 0,00
+Salßrio Final: R$ 3500,00
+
+==================================
+   SISTEMA DE FOLHA DE PAGAMENTO  
+==================================
+1. Cadastrar Colaborador
+2. Consultar Colaboradores
+3. Excluir Colaborador
+4. Gerar Folha Detalhada
+5. Emitir Resumo da Folha
+6. Editar Colaborador
+7. Gerar Folha Individual
+0. Sair
+Escolha uma opþÒo: 
+--- RELATËRIO: FOLHA DE PAGAMENTO DETALHADA ---
+MatrÝcula: 2001  | Nome: Lucas           | Tipo: PadrÒo       | Base: R$  3500,00 | Adicionais: R$     0,00 | FINAL: R$  3500,00
+
+==================================
+   SISTEMA DE FOLHA DE PAGAMENTO  
+==================================
+1. Cadastrar Colaborador
+2. Consultar Colaboradores
+3. Excluir Colaborador
+4. Gerar Folha Detalhada
+5. Emitir Resumo da Folha
+6. Editar Colaborador
+7. Gerar Folha Individual
+0. Sair
+Escolha uma opþÒo: 
+--- RELATËRIO: RESUMO DA FOLHA ---
+Quantidade de Colaboradores: 1
+Custo Total Geral da Folha: R$ 3500,00
+
+--- Total Pago por Categoria ---
+Categoria PadrÒo       : R$    3500,00
+
+==================================
+   SISTEMA DE FOLHA DE PAGAMENTO  
+==================================
+1. Cadastrar Colaborador
+2. Consultar Colaboradores
+3. Excluir Colaborador
+4. Gerar Folha Detalhada
+5. Emitir Resumo da Folha
+6. Editar Colaborador
+7. Gerar Folha Individual
+0. Sair
+Escolha uma opþÒo: MatrÝcula a ser excluÝda: [OK] Colaborador com matrÝcula 2001 excluÝdo com sucesso.
+
+==================================
+   SISTEMA DE FOLHA DE PAGAMENTO  
+==================================
+1. Cadastrar Colaborador
+2. Consultar Colaboradores
+3. Excluir Colaborador
+4. Gerar Folha Detalhada
+5. Emitir Resumo da Folha
+6. Editar Colaborador
+7. Gerar Folha Individual
+0. Sair
+Escolha uma opþÒo: Encerrando...</msg>
+<msg time="2026-11-25T16:35:51.249128" level="TRACE">Return: None</msg>
+<arg>STDOUT: ${result.stdout}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-11-25T16:35:51.248565" elapsed="0.000595"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-11-25T16:35:51.249617" level="TRACE">Arguments: [ 'STDERR: ' ]</msg>
+<msg time="2026-11-25T16:35:51.249671" level="INFO">STDERR: </msg>
+<msg time="2026-11-25T16:35:51.249704" level="TRACE">Return: None</msg>
+<arg>STDERR: ${result.stderr}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-11-25T16:35:51.249372" elapsed="0.000360"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-11-25T16:35:51.250119" level="TRACE">Arguments: [ 0 | '0' ]</msg>
+<msg time="2026-11-25T16:35:51.250176" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2026-11-25T16:35:51.250213" level="TRACE">Return: None</msg>
+<arg>${result.rc}</arg>
+<arg>0</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-11-25T16:35:51.249902" elapsed="0.000336"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2026-11-25T16:35:51.250703" level="TRACE">Arguments: [ '\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Tipo (1-PadrÒo, 2-Comissionado, 3-ProduþÒo): \nMatrÝcula: Nome: Salßrio Base: R$ [OK] Colaborador Lucas cadastrado com sucesso.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- LISTA DE COLABORADORES ---\nMatrÝcula: 2001 | Nome: Lucas | Tipo: PadrÒo\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador que deseja editar: Qual serß o NOVO tipo? (1-PadrÒo, 2-Comissionado, 3-ProduþÒo): \nNovo Nome: Novo Salßrio Base: R$ [OK] Colaborador Lucas atualizado com sucesso.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: \n--- FOLHA INDIVIDUAL ---\nMatrÝcula: 2001\nNome: Lucas\nTipo: PadrÒo\nSalßrio Base: R$ 3500,00\nAdicionais: R$ 0,00\nSalßrio Final: R$ 3500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: FOLHA DE PAGAMENTO DETALHADA ---\nMatrÝcula: 2001  | Nome: Lucas           | Tipo: PadrÒo       | Base: R$  3500,00 | Adicionais: R$     0,00 | FINAL: R$  3500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: RESUMO DA FOLHA ---\nQuantidade de Colaboradores: 1\nCusto Total Geral da Folha: R$ 3500,00\n\n--- Total Pago por Categoria ---\nCategoria PadrÒo       : R$    3500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: MatrÝcula a ser excluÝda: [OK] Colaborador com matrÝcula 2001 excluÝdo com sucesso.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' | 'SISTEMA DE FOLHA DE PAGAMENTO' ]</msg>
+<msg time="2026-11-25T16:35:51.250807" level="TRACE">Return: None</msg>
+<arg>${result.stdout}</arg>
+<arg>SISTEMA DE FOLHA DE PAGAMENTO</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-25T16:35:51.250388" elapsed="0.000444"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2026-11-25T16:35:51.251342" level="TRACE">Arguments: [ '\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Tipo (1-PadrÒo, 2-Comissionado, 3-ProduþÒo): \nMatrÝcula: Nome: Salßrio Base: R$ [OK] Colaborador Lucas cadastrado com sucesso.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- LISTA DE COLABORADORES ---\nMatrÝcula: 2001 | Nome: Lucas | Tipo: PadrÒo\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador que deseja editar: Qual serß o NOVO tipo? (1-PadrÒo, 2-Comissionado, 3-ProduþÒo): \nNovo Nome: Novo Salßrio Base: R$ [OK] Colaborador Lucas atualizado com sucesso.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: \n--- FOLHA INDIVIDUAL ---\nMatrÝcula: 2001\nNome: Lucas\nTipo: PadrÒo\nSalßrio Base: R$ 3500,00\nAdicionais: R$ 0,00\nSalßrio Final: R$ 3500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: FOLHA DE PAGAMENTO DETALHADA ---\nMatrÝcula: 2001  | Nome: Lucas           | Tipo: PadrÒo       | Base: R$  3500,00 | Adicionais: R$     0,00 | FINAL: R$  3500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: RESUMO DA FOLHA ---\nQuantidade de Colaboradores: 1\nCusto Total Geral da Folha: R$ 3500,00\n\n--- Total Pago por Categoria ---\nCategoria PadrÒo       : R$    3500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: MatrÝcula a ser excluÝda: [OK] Colaborador com matrÝcula 2001 excluÝdo com sucesso.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' | 'cadastrado com sucesso' ]</msg>
+<msg time="2026-11-25T16:35:51.251434" level="TRACE">Return: None</msg>
+<arg>${result.stdout}</arg>
+<arg>cadastrado com sucesso</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-25T16:35:51.251116" elapsed="0.000342"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2026-11-25T16:35:51.251800" level="TRACE">Arguments: [ '\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Tipo (1-PadrÒo, 2-Comissionado, 3-ProduþÒo): \nMatrÝcula: Nome: Salßrio Base: R$ [OK] Colaborador Lucas cadastrado com sucesso.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- LISTA DE COLABORADORES ---\nMatrÝcula: 2001 | Nome: Lucas | Tipo: PadrÒo\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador que deseja editar: Qual serß o NOVO tipo? (1-PadrÒo, 2-Comissionado, 3-ProduþÒo): \nNovo Nome: Novo Salßrio Base: R$ [OK] Colaborador Lucas atualizado com sucesso.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: \n--- FOLHA INDIVIDUAL ---\nMatrÝcula: 2001\nNome: Lucas\nTipo: PadrÒo\nSalßrio Base: R$ 3500,00\nAdicionais: R$ 0,00\nSalßrio Final: R$ 3500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: FOLHA DE PAGAMENTO DETALHADA ---\nMatrÝcula: 2001  | Nome: Lucas           | Tipo: PadrÒo       | Base: R$  3500,00 | Adicionais: R$     0,00 | FINAL: R$  3500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: RESUMO DA FOLHA ---\nQuantidade de Colaboradores: 1\nCusto Total Geral da Folha: R$ 3500,00\n\n--- Total Pago por Categoria ---\nCategoria PadrÒo       : R$    3500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: MatrÝcula a ser excluÝda: [OK] Colaborador com matrÝcula 2001 excluÝdo com sucesso.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' | 'atualizado com sucesso' ]</msg>
+<msg time="2026-11-25T16:35:51.251895" level="TRACE">Return: None</msg>
+<arg>${result.stdout}</arg>
+<arg>atualizado com sucesso</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-25T16:35:51.251605" elapsed="0.000315"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2026-11-25T16:35:51.252298" level="TRACE">Arguments: [ '\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Tipo (1-PadrÒo, 2-Comissionado, 3-ProduþÒo): \nMatrÝcula: Nome: Salßrio Base: R$ [OK] Colaborador Lucas cadastrado com sucesso.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- LISTA DE COLABORADORES ---\nMatrÝcula: 2001 | Nome: Lucas | Tipo: PadrÒo\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador que deseja editar: Qual serß o NOVO tipo? (1-PadrÒo, 2-Comissionado, 3-ProduþÒo): \nNovo Nome: Novo Salßrio Base: R$ [OK] Colaborador Lucas atualizado com sucesso.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: \n--- FOLHA INDIVIDUAL ---\nMatrÝcula: 2001\nNome: Lucas\nTipo: PadrÒo\nSalßrio Base: R$ 3500,00\nAdicionais: R$ 0,00\nSalßrio Final: R$ 3500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: FOLHA DE PAGAMENTO DETALHADA ---\nMatrÝcula: 2001  | Nome: Lucas           | Tipo: PadrÒo       | Base: R$  3500,00 | Adicionais: R$     0,00 | FINAL: R$  3500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: RESUMO DA FOLHA ---\nQuantidade de Colaboradores: 1\nCusto Total Geral da Folha: R$ 3500,00\n\n--- Total Pago por Categoria ---\nCategoria PadrÒo       : R$    3500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: MatrÝcula a ser excluÝda: [OK] Colaborador com matrÝcula 2001 excluÝdo com sucesso.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' | '3500' ]</msg>
+<msg time="2026-11-25T16:35:51.252387" level="TRACE">Return: None</msg>
+<arg>${result.stdout}</arg>
+<arg>3500</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-25T16:35:51.252067" elapsed="0.000344"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2026-11-25T16:35:51.252750" level="TRACE">Arguments: [ '\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Tipo (1-PadrÒo, 2-Comissionado, 3-ProduþÒo): \nMatrÝcula: Nome: Salßrio Base: R$ [OK] Colaborador Lucas cadastrado com sucesso.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- LISTA DE COLABORADORES ---\nMatrÝcula: 2001 | Nome: Lucas | Tipo: PadrÒo\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador que deseja editar: Qual serß o NOVO tipo? (1-PadrÒo, 2-Comissionado, 3-ProduþÒo): \nNovo Nome: Novo Salßrio Base: R$ [OK] Colaborador Lucas atualizado com sucesso.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: \n--- FOLHA INDIVIDUAL ---\nMatrÝcula: 2001\nNome: Lucas\nTipo: PadrÒo\nSalßrio Base: R$ 3500,00\nAdicionais: R$ 0,00\nSalßrio Final: R$ 3500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: FOLHA DE PAGAMENTO DETALHADA ---\nMatrÝcula: 2001  | Nome: Lucas           | Tipo: PadrÒo       | Base: R$  3500,00 | Adicionais: R$     0,00 | FINAL: R$  3500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: RESUMO DA FOLHA ---\nQuantidade de Colaboradores: 1\nCusto Total Geral da Folha: R$ 3500,00\n\n--- Total Pago por Categoria ---\nCategoria PadrÒo       : R$    3500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: MatrÝcula a ser excluÝda: [OK] Colaborador com matrÝcula 2001 excluÝdo com sucesso.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' | 'Encerrando' ]</msg>
+<msg time="2026-11-25T16:35:51.252839" level="TRACE">Return: None</msg>
+<arg>${result.stdout}</arg>
+<arg>Encerrando</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-25T16:35:51.252553" elapsed="0.000317"/>
+</kw>
+<kw name="Should Not Contain" owner="BuiltIn">
+<msg time="2026-11-25T16:35:51.253249" level="TRACE">Arguments: [ '\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Tipo (1-PadrÒo, 2-Comissionado, 3-ProduþÒo): \nMatrÝcula: Nome: Salßrio Base: R$ [OK] Colaborador Lucas cadastrado com sucesso.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- LISTA DE COLABORADORES ---\nMatrÝcula: 2001 | Nome: Lucas | Tipo: PadrÒo\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador que deseja editar: Qual serß o NOVO tipo? (1-PadrÒo, 2-Comissionado, 3-ProduþÒo): \nNovo Nome: Novo Salßrio Base: R$ [OK] Colaborador Lucas atualizado com sucesso.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: \n--- FOLHA INDIVIDUAL ---\nMatrÝcula: 2001\nNome: Lucas\nTipo: PadrÒo\nSalßrio Base: R$ 3500,00\nAdicionais: R$ 0,00\nSalßrio Final: R$ 3500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: FOLHA DE PAGAMENTO DETALHADA ---\nMatrÝcula: 2001  | Nome: Lucas           | Tipo: PadrÒo       | Base: R$  3500,00 | Adicionais: R$     0,00 | FINAL: R$  3500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: RESUMO DA FOLHA ---\nQuantidade de Colaboradores: 1\nCusto Total Geral da Folha: R$ 3500,00\n\n--- Total Pago por Categoria ---\nCategoria PadrÒo       : R$    3500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: MatrÝcula a ser excluÝda: [OK] Colaborador com matrÝcula 2001 excluÝdo com sucesso.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' | 'Exception' ]</msg>
+<msg time="2026-11-25T16:35:51.253339" level="TRACE">Return: None</msg>
+<arg>${result.stdout}</arg>
+<arg>Exception</arg>
+<doc>Fails if the `container` contains the `item`.</doc>
+<status status="PASS" start="2026-11-25T16:35:51.253010" elapsed="0.000352"/>
+</kw>
+<kw name="Should Not Contain" owner="BuiltIn">
+<msg time="2026-11-25T16:35:51.253698" level="TRACE">Arguments: [ '' | 'Exception' ]</msg>
+<msg time="2026-11-25T16:35:51.253747" level="TRACE">Return: None</msg>
+<arg>${result.stderr}</arg>
+<arg>Exception</arg>
+<doc>Fails if the `container` contains the `item`.</doc>
+<status status="PASS" start="2026-11-25T16:35:51.253506" elapsed="0.000263"/>
+</kw>
+<doc>Valida a fluidez e clareza dos menus executando todas as opcoes do sistema em sequencia.</doc>
+<status status="PASS" start="2026-11-25T16:35:50.931139" elapsed="0.322786"/>
+</test>
+<doc>Suite de testes de sistema - CT031 (Validacao de Fluxo Completo e Usabilidade)</doc>
+<status status="PASS" start="2026-11-25T16:35:50.918124" elapsed="0.336347"/>
+</suite>
+<status status="PASS" start="2026-11-25T16:35:50.880858" elapsed="0.374191"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="CT031" id="s1" pass="1" fail="0" skip="0">CT031</stat>
+<stat name="Teste031" id="s1-s1" pass="1" fail="0" skip="0">CT031.Teste031</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

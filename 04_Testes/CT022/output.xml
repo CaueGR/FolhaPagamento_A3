@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.5.1 (Python 3.14.7 on win32)" generated="2026-11-24T20:36:57.627709" rpa="false" schemaversion="5">
+<suite id="s1" name="CT022" source="D:\A3Qualidade\FolhaPagamento_A3\Testes\CT022">
+<suite id="s1-s1" name="Teste022" source="D:\A3Qualidade\FolhaPagamento_A3\Testes\CT022\teste022.robot">
+<test id="s1-s1-t1" name="CT022 - Excluir Matricula Inexistente via Terminal" line="22">
+<kw name="Create Directory" owner="OperatingSystem">
+<msg time="2026-11-24T20:36:57.684363" level="TRACE">Arguments: [ 'D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT022/temp_test_dir' ]</msg>
+<msg time="2026-11-24T20:36:57.684796" level="INFO" html="true">Created directory '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\Testes\CT022\temp_test_dir"&gt;D:\A3Qualidade\FolhaPagamento_A3\Testes\CT022\temp_test_dir&lt;/a&gt;'.</msg>
+<msg time="2026-11-24T20:36:57.684847" level="TRACE">Return: None</msg>
+<arg>${TEMP_DIR}</arg>
+<doc>Creates the specified directory.</doc>
+<status status="PASS" start="2026-11-24T20:36:57.684257" elapsed="0.000629"/>
+</kw>
+<kw name="Catenate" owner="BuiltIn">
+<msg time="2026-11-24T20:36:57.685299" level="TRACE">Arguments: [ 'SEPARATOR=\n' | 'TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE' | '1,1001,Ana,2000.0,0,0,0,0' ]</msg>
+<msg time="2026-11-24T20:36:57.685358" level="TRACE">Return: 'TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE\n1,1001,Ana,2000.0,0,0,0,0'</msg>
+<msg time="2026-11-24T20:36:57.685415" level="INFO">${massa_csv} = TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE
+1,1001,Ana,2000.0,0,0,0,0</msg>
+<var>${massa_csv}</var>
+<arg>SEPARATOR=\n</arg>
+<arg>TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE</arg>
+<arg>1,1001,Ana,2000.0,0,0,0,0</arg>
+<doc>Concatenates the given items together and returns the resulted string.</doc>
+<status status="PASS" start="2026-11-24T20:36:57.685090" elapsed="0.000346"/>
+</kw>
+<kw name="Create File" owner="OperatingSystem">
+<msg time="2026-11-24T20:36:57.685703" level="TRACE">Arguments: [ 'D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT022/temp_test_dir/colaboradores_db.csv' | 'TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE\n1,1001,Ana,2000.0,0,0,0,0\n' ]</msg>
+<msg time="2026-11-24T20:36:57.686230" level="INFO" html="true">Created file '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\Testes\CT022\temp_test_dir\colaboradores_db.csv"&gt;D:\A3Qualidade\FolhaPagamento_A3\Testes\CT022\temp_test_dir\colaboradores_db.csv&lt;/a&gt;'.</msg>
+<msg time="2026-11-24T20:36:57.686272" level="TRACE">Return: None</msg>
+<arg>${CSV_FILE}</arg>
+<arg>${massa_csv}\n</arg>
+<doc>Creates a file with the given content and encoding.</doc>
+<status status="PASS" start="2026-11-24T20:36:57.685601" elapsed="0.000701"/>
+</kw>
+<kw name="Create File" owner="OperatingSystem">
+<msg time="2026-11-24T20:36:57.686555" level="TRACE">Arguments: [ 'D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT022/temp_test_dir/inputs_ct022.txt' | '3\n9999\n0\n' ]</msg>
+<msg time="2026-11-24T20:36:57.686986" level="INFO" html="true">Created file '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\Testes\CT022\temp_test_dir\inputs_ct022.txt"&gt;D:\A3Qualidade\FolhaPagamento_A3\Testes\CT022\temp_test_dir\inputs_ct022.txt&lt;/a&gt;'.</msg>
+<msg time="2026-11-24T20:36:57.687024" level="TRACE">Return: None</msg>
+<arg>${TEMP_DIR}/inputs_ct022.txt</arg>
+<arg>3\n9999\n0\n</arg>
+<doc>Creates a file with the given content and encoding.</doc>
+<status status="PASS" start="2026-11-24T20:36:57.686465" elapsed="0.000589"/>
+</kw>
+<kw name="Run Process" owner="Process">
+<msg time="2026-11-24T20:36:57.687637" level="TRACE">Arguments: [ 'java' | '-jar' | 'D:/A3Qualidade/FolhaPagamento_A3/FolhaPagamento_A3_jar/FolhaPagamento_A3.jar' | cwd='D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT022/temp_test_dir' | stdin='D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT022/temp_test_dir/inputs_ct022.txt' | timeout=datetime.timedelta(seconds=10) ]</msg>
+<msg time="2026-11-24T20:36:57.692734" level="INFO">Starting process:
+java -jar D:/A3Qualidade/FolhaPagamento_A3/FolhaPagamento_A3_jar/FolhaPagamento_A3.jar</msg>
+<msg time="2026-11-24T20:36:57.692775" level="DEBUG">Process configuration:
+cwd:     D:\A3Qualidade\FolhaPagamento_A3\Testes\CT022\temp_test_dir
+shell:   False
+stdout:  PIPE
+stderr:  PIPE
+stdin:   D:\A3Qualidade\FolhaPagamento_A3\Testes\CT022\temp_test_dir\inputs_ct022.txt
+alias:   None
+env:     None</msg>
+<msg time="2026-11-24T20:36:57.697514" level="INFO">Waiting for process to complete.</msg>
+<msg time="2026-11-24T20:36:57.898612" level="INFO">Process completed.</msg>
+<msg time="2026-11-24T20:36:57.898696" level="TRACE">Return: &lt;robot.libraries.Process.ProcessResult object at 0x000001F211C7BA10&gt;</msg>
+<msg time="2026-11-24T20:36:57.898807" level="INFO">${result} = &lt;result object with rc 0&gt;</msg>
+<var>${result}</var>
+<arg>java</arg>
+<arg>-jar</arg>
+<arg>${JAR_PATH}</arg>
+<arg>cwd=${TEMP_DIR}</arg>
+<arg>stdin=${TEMP_DIR}/inputs_ct022.txt</arg>
+<arg>timeout=10s</arg>
+<doc>Runs a process and waits for it to complete.</doc>
+<status status="PASS" start="2026-11-24T20:36:57.687224" elapsed="0.211606"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-11-24T20:36:57.899548" level="TRACE">Arguments: [ 'STDOUT: \n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: MatrÝcula a ser excluÝda: [ERRO] Colaborador com matrÝcula 9999 nÒo encontrado.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' ]</msg>
+<msg time="2026-11-24T20:36:57.899629" level="INFO">STDOUT: 
+==================================
+   SISTEMA DE FOLHA DE PAGAMENTO  
+==================================
+1. Cadastrar Colaborador
+2. Consultar Colaboradores
+3. Excluir Colaborador
+4. Gerar Folha Detalhada
+5. Emitir Resumo da Folha
+6. Editar Colaborador
+7. Gerar Folha Individual
+0. Sair
+Escolha uma opþÒo: MatrÝcula a ser excluÝda: [ERRO] Colaborador com matrÝcula 9999 nÒo encontrado.
+
+==================================
+   SISTEMA DE FOLHA DE PAGAMENTO  
+==================================
+1. Cadastrar Colaborador
+2. Consultar Colaboradores
+3. Excluir Colaborador
+4. Gerar Folha Detalhada
+5. Emitir Resumo da Folha
+6. Editar Colaborador
+7. Gerar Folha Individual
+0. Sair
+Escolha uma opþÒo: Encerrando...</msg>
+<msg time="2026-11-24T20:36:57.899669" level="TRACE">Return: None</msg>
+<arg>STDOUT: ${result.stdout}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-11-24T20:36:57.899171" elapsed="0.000530"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-11-24T20:36:57.900175" level="TRACE">Arguments: [ 'STDERR: ' ]</msg>
+<msg time="2026-11-24T20:36:57.900230" level="INFO">STDERR: </msg>
+<msg time="2026-11-24T20:36:57.900261" level="TRACE">Return: None</msg>
+<arg>STDERR: ${result.stderr}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-11-24T20:36:57.899913" elapsed="0.000377"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-11-24T20:36:57.900643" level="TRACE">Arguments: [ 0 | '0' ]</msg>
+<msg time="2026-11-24T20:36:57.900696" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2026-11-24T20:36:57.900734" level="TRACE">Return: None</msg>
+<arg>${result.rc}</arg>
+<arg>0</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-11-24T20:36:57.900441" elapsed="0.000318"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2026-11-24T20:36:57.901341" level="TRACE">Arguments: [ '\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: MatrÝcula a ser excluÝda: [ERRO] Colaborador com matrÝcula 9999 nÒo encontrado.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' | 'encontrad' | ignore_case=True ]</msg>
+<msg time="2026-11-24T20:36:57.901425" level="TRACE">Return: None</msg>
+<arg>${result.stdout}</arg>
+<arg>encontrad</arg>
+<arg>ignore_case=True</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-24T20:36:57.900945" elapsed="0.000505"/>
+</kw>
+<kw name="File Should Exist" owner="OperatingSystem">
+<msg time="2026-11-24T20:36:57.901766" level="TRACE">Arguments: [ 'D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT022/temp_test_dir/colaboradores_db.csv' ]</msg>
+<msg time="2026-11-24T20:36:57.902022" level="INFO" html="true">File '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\Testes\CT022\temp_test_dir\colaboradores_db.csv"&gt;D:\A3Qualidade\FolhaPagamento_A3\Testes\CT022\temp_test_dir\colaboradores_db.csv&lt;/a&gt;' exists.</msg>
+<msg time="2026-11-24T20:36:57.902061" level="TRACE">Return: None</msg>
+<arg>${CSV_FILE}</arg>
+<doc>Fails unless the given `path` points to an existing file.</doc>
+<status status="PASS" start="2026-11-24T20:36:57.901704" elapsed="0.000385"/>
+</kw>
+<kw name="Get File" owner="OperatingSystem">
+<msg time="2026-11-24T20:36:57.902298" level="TRACE">Arguments: [ 'D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT022/temp_test_dir/colaboradores_db.csv' ]</msg>
+<msg time="2026-11-24T20:36:57.902344" level="INFO" html="true">Getting file '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\Testes\CT022\temp_test_dir\colaboradores_db.csv"&gt;D:\A3Qualidade\FolhaPagamento_A3\Testes\CT022\temp_test_dir\colaboradores_db.csv&lt;/a&gt;'.</msg>
+<msg time="2026-11-24T20:36:57.902543" level="TRACE">Return: 'TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE\n1,1001,Ana,2000.0,0,0,0,0\n'</msg>
+<msg time="2026-11-24T20:36:57.902608" level="INFO">${conteudo_csv} = TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE
+1,1001,Ana,2000.0,0,0,0,0
+</msg>
+<var>${conteudo_csv}</var>
+<arg>${CSV_FILE}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<status status="PASS" start="2026-11-24T20:36:57.902238" elapsed="0.000392"/>
+</kw>
+<kw name="Catenate" owner="BuiltIn">
+<msg time="2026-11-24T20:36:57.902954" level="TRACE">Arguments: [ 'SEPARATOR=\n' | 'TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE' | '1,1001,Ana,2000.0,0,0,0,0' ]</msg>
+<msg time="2026-11-24T20:36:57.903014" level="TRACE">Return: 'TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE\n1,1001,Ana,2000.0,0,0,0,0'</msg>
+<msg time="2026-11-24T20:36:57.903065" level="INFO">${csv_esperado} = TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE
+1,1001,Ana,2000.0,0,0,0,0</msg>
+<var>${csv_esperado}</var>
+<arg>SEPARATOR=\n</arg>
+<arg>TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE</arg>
+<arg>1,1001,Ana,2000.0,0,0,0,0</arg>
+<doc>Concatenates the given items together and returns the resulted string.</doc>
+<status status="PASS" start="2026-11-24T20:36:57.902779" elapsed="0.000305"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2026-11-24T20:36:57.903394" level="TRACE">Arguments: [ 'TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE\n1,1001,Ana,2000.0,0,0,0,0\n' | 'TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE\n1,1001,Ana,2000.0,0,0,0,0\n' ]</msg>
+<msg time="2026-11-24T20:36:57.903441" level="DEBUG">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2026-11-24T20:36:57.903471" level="TRACE">Return: None</msg>
+<arg>${conteudo_csv}</arg>
+<arg>${csv_esperado}\n</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2026-11-24T20:36:57.903231" elapsed="0.000262"/>
+</kw>
+<doc>Valida o RF009 garantindo tratamento adequado ao tentar excluir matricula inexistente.</doc>
+<status status="PASS" start="2026-11-24T20:36:57.683506" elapsed="0.220144"/>
+</test>
+<doc>Suite de testes de sistema - CT022 (Exclusao de Matricula Inexistente)</doc>
+<status status="PASS" start="2026-11-24T20:36:57.670124" elapsed="0.234453"/>
+</suite>
+<status status="PASS" start="2026-11-24T20:36:57.629264" elapsed="0.276601"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="CT022" id="s1" pass="1" fail="0" skip="0">CT022</stat>
+<stat name="Teste022" id="s1-s1" pass="1" fail="0" skip="0">CT022.Teste022</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

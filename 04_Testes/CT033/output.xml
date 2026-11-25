@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.5.1 (Python 3.14.7 on win32)" generated="2026-11-24T20:43:54.872752" rpa="false" schemaversion="5">
+<suite id="s1" name="CT033" source="D:\A3Qualidade\FolhaPagamento_A3\Testes\CT033">
+<suite id="s1-s1" name="Teste033" source="D:\A3Qualidade\FolhaPagamento_A3\Testes\CT033\teste033.robot">
+<test id="s1-s1-t1" name="CT033 - Gerar Folha Individual via Terminal" line="22">
+<kw name="Create Directory" owner="OperatingSystem">
+<msg time="2026-11-24T20:43:54.930084" level="TRACE">Arguments: [ 'D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT033/temp_test_dir' ]</msg>
+<msg time="2026-11-24T20:43:54.930527" level="INFO" html="true">Created directory '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\Testes\CT033\temp_test_dir"&gt;D:\A3Qualidade\FolhaPagamento_A3\Testes\CT033\temp_test_dir&lt;/a&gt;'.</msg>
+<msg time="2026-11-24T20:43:54.930577" level="TRACE">Return: None</msg>
+<arg>${TEMP_DIR}</arg>
+<doc>Creates the specified directory.</doc>
+<status status="PASS" start="2026-11-24T20:43:54.929969" elapsed="0.000649"/>
+</kw>
+<kw name="Catenate" owner="BuiltIn">
+<msg time="2026-11-24T20:43:54.931043" level="TRACE">Arguments: [ 'SEPARATOR=\n' | 'TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE' | '2,1002,Bruno,2000.0,10000.0,5.0,0,0' ]</msg>
+<msg time="2026-11-24T20:43:54.931103" level="TRACE">Return: 'TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE\n2,1002,Bruno,2000.0,10000.0,5.0,0,0'</msg>
+<msg time="2026-11-24T20:43:54.931160" level="INFO">${massa_csv} = TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE
+2,1002,Bruno,2000.0,10000.0,5.0,0,0</msg>
+<var>${massa_csv}</var>
+<arg>SEPARATOR=\n</arg>
+<arg>TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE</arg>
+<arg>2,1002,Bruno,2000.0,10000.0,5.0,0,0</arg>
+<doc>Concatenates the given items together and returns the resulted string.</doc>
+<status status="PASS" start="2026-11-24T20:43:54.930833" elapsed="0.000347"/>
+</kw>
+<kw name="Create File" owner="OperatingSystem">
+<msg time="2026-11-24T20:43:54.931497" level="TRACE">Arguments: [ 'D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT033/temp_test_dir/colaboradores_db.csv' | 'TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE\n2,1002,Bruno,2000.0,10000.0,5.0,0,0\n' ]</msg>
+<msg time="2026-11-24T20:43:54.933303" level="INFO" html="true">Created file '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\Testes\CT033\temp_test_dir\colaboradores_db.csv"&gt;D:\A3Qualidade\FolhaPagamento_A3\Testes\CT033\temp_test_dir\colaboradores_db.csv&lt;/a&gt;'.</msg>
+<msg time="2026-11-24T20:43:54.933341" level="TRACE">Return: None</msg>
+<arg>${CSV_FILE}</arg>
+<arg>${massa_csv}\n</arg>
+<doc>Creates a file with the given content and encoding.</doc>
+<status status="PASS" start="2026-11-24T20:43:54.931372" elapsed="0.001998"/>
+</kw>
+<kw name="Create File" owner="OperatingSystem">
+<msg time="2026-11-24T20:43:54.933650" level="TRACE">Arguments: [ 'D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT033/temp_test_dir/inputs_ct033.txt' | '7\n1002\n7\n9999\n0\n' ]</msg>
+<msg time="2026-11-24T20:43:54.934119" level="INFO" html="true">Created file '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\Testes\CT033\temp_test_dir\inputs_ct033.txt"&gt;D:\A3Qualidade\FolhaPagamento_A3\Testes\CT033\temp_test_dir\inputs_ct033.txt&lt;/a&gt;'.</msg>
+<msg time="2026-11-24T20:43:54.934156" level="TRACE">Return: None</msg>
+<arg>${TEMP_DIR}/inputs_ct033.txt</arg>
+<arg>7\n1002\n7\n9999\n0\n</arg>
+<doc>Creates a file with the given content and encoding.</doc>
+<status status="PASS" start="2026-11-24T20:43:54.933544" elapsed="0.000641"/>
+</kw>
+<kw name="Run Process" owner="Process">
+<msg time="2026-11-24T20:43:54.934947" level="TRACE">Arguments: [ 'java' | '-jar' | 'D:/A3Qualidade/FolhaPagamento_A3/FolhaPagamento_A3_jar/FolhaPagamento_A3.jar' | cwd='D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT033/temp_test_dir' | stdin='D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT033/temp_test_dir/inputs_ct033.txt' | timeout=datetime.timedelta(seconds=10) ]</msg>
+<msg time="2026-11-24T20:43:54.940746" level="INFO">Starting process:
+java -jar D:/A3Qualidade/FolhaPagamento_A3/FolhaPagamento_A3_jar/FolhaPagamento_A3.jar</msg>
+<msg time="2026-11-24T20:43:54.940793" level="DEBUG">Process configuration:
+cwd:     D:\A3Qualidade\FolhaPagamento_A3\Testes\CT033\temp_test_dir
+shell:   False
+stdout:  PIPE
+stderr:  PIPE
+stdin:   D:\A3Qualidade\FolhaPagamento_A3\Testes\CT033\temp_test_dir\inputs_ct033.txt
+alias:   None
+env:     None</msg>
+<msg time="2026-11-24T20:43:54.945831" level="INFO">Waiting for process to complete.</msg>
+<msg time="2026-11-24T20:43:55.148953" level="INFO">Process completed.</msg>
+<msg time="2026-11-24T20:43:55.149040" level="TRACE">Return: &lt;robot.libraries.Process.ProcessResult object at 0x00000248C258BA10&gt;</msg>
+<msg time="2026-11-24T20:43:55.149156" level="INFO">${result} = &lt;result object with rc 0&gt;</msg>
+<var>${result}</var>
+<arg>java</arg>
+<arg>-jar</arg>
+<arg>${JAR_PATH}</arg>
+<arg>cwd=${TEMP_DIR}</arg>
+<arg>stdin=${TEMP_DIR}/inputs_ct033.txt</arg>
+<arg>timeout=10s</arg>
+<doc>Runs a process and waits for it to complete.</doc>
+<status status="PASS" start="2026-11-24T20:43:54.934383" elapsed="0.214797"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-11-24T20:43:55.149921" level="TRACE">Arguments: [ 'STDOUT: \n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: \n--- FOLHA INDIVIDUAL ---\nMatrÝcula: 1002\nNome: Bruno\nTipo: Comissionado\nSalßrio Base: R$ 2000,00\nAdicionais: R$ 500,00\nSalßrio Final: R$ 2500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: [ERRO] Colaborador nÒo encontrado.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' ]</msg>
+<msg time="2026-11-24T20:43:55.150005" level="INFO">STDOUT: 
+==================================
+   SISTEMA DE FOLHA DE PAGAMENTO  
+==================================
+1. Cadastrar Colaborador
+2. Consultar Colaboradores
+3. Excluir Colaborador
+4. Gerar Folha Detalhada
+5. Emitir Resumo da Folha
+6. Editar Colaborador
+7. Gerar Folha Individual
+0. Sair
+Escolha uma opþÒo: Digite a matrÝcula do colaborador: 
+--- FOLHA INDIVIDUAL ---
+MatrÝcula: 1002
+Nome: Bruno
+Tipo: Comissionado
+Salßrio Base: R$ 2000,00
+Adicionais: R$ 500,00
+Salßrio Final: R$ 2500,00
+
+==================================
+   SISTEMA DE FOLHA DE PAGAMENTO  
+==================================
+1. Cadastrar Colaborador
+2. Consultar Colaboradores
+3. Excluir Colaborador
+4. Gerar Folha Detalhada
+5. Emitir Resumo da Folha
+6. Editar Colaborador
+7. Gerar Folha Individual
+0. Sair
+Escolha uma opþÒo: Digite a matrÝcula do colaborador: [ERRO] Colaborador nÒo encontrado.
+
+==================================
+   SISTEMA DE FOLHA DE PAGAMENTO  
+==================================
+1. Cadastrar Colaborador
+2. Consultar Colaboradores
+3. Excluir Colaborador
+4. Gerar Folha Detalhada
+5. Emitir Resumo da Folha
+6. Editar Colaborador
+7. Gerar Folha Individual
+0. Sair
+Escolha uma opþÒo: Encerrando...</msg>
+<msg time="2026-11-24T20:43:55.150044" level="TRACE">Return: None</msg>
+<arg>STDOUT: ${result.stdout}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-11-24T20:43:55.149559" elapsed="0.000512"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-11-24T20:43:55.150466" level="TRACE">Arguments: [ 'STDERR: ' ]</msg>
+<msg time="2026-11-24T20:43:55.150509" level="INFO">STDERR: </msg>
+<msg time="2026-11-24T20:43:55.150533" level="TRACE">Return: None</msg>
+<arg>STDERR: ${result.stderr}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-11-24T20:43:55.150267" elapsed="0.000288"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-11-24T20:43:55.150910" level="TRACE">Arguments: [ 0 | '0' ]</msg>
+<msg time="2026-11-24T20:43:55.150962" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2026-11-24T20:43:55.150998" level="TRACE">Return: None</msg>
+<arg>${result.rc}</arg>
+<arg>0</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-11-24T20:43:55.150709" elapsed="0.000312"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2026-11-24T20:43:55.151499" level="TRACE">Arguments: [ '\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: \n--- FOLHA INDIVIDUAL ---\nMatrÝcula: 1002\nNome: Bruno\nTipo: Comissionado\nSalßrio Base: R$ 2000,00\nAdicionais: R$ 500,00\nSalßrio Final: R$ 2500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: [ERRO] Colaborador nÒo encontrado.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' | '1002' ]</msg>
+<msg time="2026-11-24T20:43:55.151576" level="TRACE">Return: None</msg>
+<arg>${result.stdout}</arg>
+<arg>1002</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-24T20:43:55.151172" elapsed="0.000427"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2026-11-24T20:43:55.152261" level="TRACE">Arguments: [ '\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: \n--- FOLHA INDIVIDUAL ---\nMatrÝcula: 1002\nNome: Bruno\nTipo: Comissionado\nSalßrio Base: R$ 2000,00\nAdicionais: R$ 500,00\nSalßrio Final: R$ 2500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: [ERRO] Colaborador nÒo encontrado.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' | 'Bruno' ]</msg>
+<msg time="2026-11-24T20:43:55.152349" level="TRACE">Return: None</msg>
+<arg>${result.stdout}</arg>
+<arg>Bruno</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-24T20:43:55.151992" elapsed="0.000386"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2026-11-24T20:43:55.152787" level="TRACE">Arguments: [ '\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: \n--- FOLHA INDIVIDUAL ---\nMatrÝcula: 1002\nNome: Bruno\nTipo: Comissionado\nSalßrio Base: R$ 2000,00\nAdicionais: R$ 500,00\nSalßrio Final: R$ 2500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: [ERRO] Colaborador nÒo encontrado.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' | 'Comissionado' ]</msg>
+<msg time="2026-11-24T20:43:55.152855" level="TRACE">Return: None</msg>
+<arg>${result.stdout}</arg>
+<arg>Comissionado</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-24T20:43:55.152537" elapsed="0.000342"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2026-11-24T20:43:55.153327" level="TRACE">Arguments: [ '\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: \n--- FOLHA INDIVIDUAL ---\nMatrÝcula: 1002\nNome: Bruno\nTipo: Comissionado\nSalßrio Base: R$ 2000,00\nAdicionais: R$ 500,00\nSalßrio Final: R$ 2500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: [ERRO] Colaborador nÒo encontrado.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' | '2000' ]</msg>
+<msg time="2026-11-24T20:43:55.153411" level="TRACE">Return: None</msg>
+<arg>${result.stdout}</arg>
+<arg>2000</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-24T20:43:55.153063" elapsed="0.000382"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2026-11-24T20:43:55.153821" level="TRACE">Arguments: [ '\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: \n--- FOLHA INDIVIDUAL ---\nMatrÝcula: 1002\nNome: Bruno\nTipo: Comissionado\nSalßrio Base: R$ 2000,00\nAdicionais: R$ 500,00\nSalßrio Final: R$ 2500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: [ERRO] Colaborador nÒo encontrado.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' | '500' ]</msg>
+<msg time="2026-11-24T20:43:55.153898" level="TRACE">Return: None</msg>
+<arg>${result.stdout}</arg>
+<arg>500</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-24T20:43:55.153597" elapsed="0.000325"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2026-11-24T20:43:55.154259" level="TRACE">Arguments: [ '\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: \n--- FOLHA INDIVIDUAL ---\nMatrÝcula: 1002\nNome: Bruno\nTipo: Comissionado\nSalßrio Base: R$ 2000,00\nAdicionais: R$ 500,00\nSalßrio Final: R$ 2500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: [ERRO] Colaborador nÒo encontrado.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' | '2500' ]</msg>
+<msg time="2026-11-24T20:43:55.154323" level="TRACE">Return: None</msg>
+<arg>${result.stdout}</arg>
+<arg>2500</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-24T20:43:55.154063" elapsed="0.000283"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2026-11-24T20:43:55.154737" level="TRACE">Arguments: [ '\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: \n--- FOLHA INDIVIDUAL ---\nMatrÝcula: 1002\nNome: Bruno\nTipo: Comissionado\nSalßrio Base: R$ 2000,00\nAdicionais: R$ 500,00\nSalßrio Final: R$ 2500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Digite a matrÝcula do colaborador: [ERRO] Colaborador nÒo encontrado.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' | 'encontrad' | ignore_case=True ]</msg>
+<msg time="2026-11-24T20:43:55.155233" level="TRACE">Return: None</msg>
+<arg>${result.stdout}</arg>
+<arg>encontrad</arg>
+<arg>ignore_case=True</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-24T20:43:55.154490" elapsed="0.000779"/>
+</kw>
+<doc>Valida o RF010 gerando a folha individual de matricula existente e inexistente.</doc>
+<status status="PASS" start="2026-11-24T20:43:54.929128" elapsed="0.226305"/>
+</test>
+<doc>Suite de testes de sistema - CT033 (Gerar Folha Individual)</doc>
+<status status="PASS" start="2026-11-24T20:43:54.915205" elapsed="0.241177"/>
+</suite>
+<status status="PASS" start="2026-11-24T20:43:54.874497" elapsed="0.283170"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="CT033" id="s1" pass="1" fail="0" skip="0">CT033</stat>
+<stat name="Teste033" id="s1-s1" pass="1" fail="0" skip="0">CT033.Teste033</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

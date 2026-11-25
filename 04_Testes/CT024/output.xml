@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.5.1 (Python 3.14.7 on win32)" generated="2026-11-24T20:41:27.193179" rpa="false" schemaversion="5">
+<suite id="s1" name="CT024" source="D:\A3Qualidade\FolhaPagamento_A3\Testes\CT024">
+<suite id="s1-s1" name="Teste024" source="D:\A3Qualidade\FolhaPagamento_A3\Testes\CT024\teste024.robot">
+<test id="s1-s1-t1" name="CT024 - Emitir Resumo da Folha via Terminal" line="22">
+<kw name="Create Directory" owner="OperatingSystem">
+<msg time="2026-11-24T20:41:27.249804" level="TRACE">Arguments: [ 'D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT024/temp_test_dir' ]</msg>
+<msg time="2026-11-24T20:41:27.250271" level="INFO" html="true">Created directory '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\Testes\CT024\temp_test_dir"&gt;D:\A3Qualidade\FolhaPagamento_A3\Testes\CT024\temp_test_dir&lt;/a&gt;'.</msg>
+<msg time="2026-11-24T20:41:27.250325" level="TRACE">Return: None</msg>
+<arg>${TEMP_DIR}</arg>
+<doc>Creates the specified directory.</doc>
+<status status="PASS" start="2026-11-24T20:41:27.249675" elapsed="0.000691"/>
+</kw>
+<kw name="Catenate" owner="BuiltIn">
+<msg time="2026-11-24T20:41:27.250815" level="TRACE">Arguments: [ 'SEPARATOR=\n' | 'TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE' | '1,1001,Ana,2000.0,0,0,0,0' | '2,1002,Bruno,2000.0,10000.0,5.0,0,0' | '3,1003,Carla,1500.0,0,0,100,10.0' ]</msg>
+<msg time="2026-11-24T20:41:27.250890" level="TRACE">Return: 'TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE\n1,1001,Ana,2000.0,0,0,0,0\n2,1002,Bruno,2000.0,10000.0,5.0,0,0\n3,1003,Carla,1500.0,0,0,100,10.0'</msg>
+<msg time="2026-11-24T20:41:27.250955" level="INFO">${massa_csv} = TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE
+1,1001,Ana,2000.0,0,0,0,0
+2,1002,Bruno,2000.0,10000.0,5.0,0,0
+3,1003,Carla,1500.0,0,0,100,10.0</msg>
+<var>${massa_csv}</var>
+<arg>SEPARATOR=\n</arg>
+<arg>TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE</arg>
+<arg>1,1001,Ana,2000.0,0,0,0,0</arg>
+<arg>2,1002,Bruno,2000.0,10000.0,5.0,0,0</arg>
+<arg>3,1003,Carla,1500.0,0,0,100,10.0</arg>
+<doc>Concatenates the given items together and returns the resulted string.</doc>
+<status status="PASS" start="2026-11-24T20:41:27.250571" elapsed="0.000407"/>
+</kw>
+<kw name="Create File" owner="OperatingSystem">
+<msg time="2026-11-24T20:41:27.251251" level="TRACE">Arguments: [ 'D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT024/temp_test_dir/colaboradores_db.csv' | 'TIPO,MATRICULA,NOME,SALARIO_BASE,VENDAS,PERCENTUAL,QTD_PRODUZIDA,VALOR_UNIDADE\n1,1001,Ana,2000.0,0,0,0,0\n2,1002,Bruno,2000.0,10000.0,5.0,0,0\n3,1003,Carla,1500.0,0,0,100,10.0\n' ]</msg>
+<msg time="2026-11-24T20:41:27.251714" level="INFO" html="true">Created file '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\Testes\CT024\temp_test_dir\colaboradores_db.csv"&gt;D:\A3Qualidade\FolhaPagamento_A3\Testes\CT024\temp_test_dir\colaboradores_db.csv&lt;/a&gt;'.</msg>
+<msg time="2026-11-24T20:41:27.251753" level="TRACE">Return: None</msg>
+<arg>${CSV_FILE}</arg>
+<arg>${massa_csv}\n</arg>
+<doc>Creates a file with the given content and encoding.</doc>
+<status status="PASS" start="2026-11-24T20:41:27.251151" elapsed="0.000635"/>
+</kw>
+<kw name="Create File" owner="OperatingSystem">
+<msg time="2026-11-24T20:41:27.252039" level="TRACE">Arguments: [ 'D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT024/temp_test_dir/inputs_ct024.txt' | '5\n0\n' ]</msg>
+<msg time="2026-11-24T20:41:27.252450" level="INFO" html="true">Created file '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\Testes\CT024\temp_test_dir\inputs_ct024.txt"&gt;D:\A3Qualidade\FolhaPagamento_A3\Testes\CT024\temp_test_dir\inputs_ct024.txt&lt;/a&gt;'.</msg>
+<msg time="2026-11-24T20:41:27.252488" level="TRACE">Return: None</msg>
+<arg>${TEMP_DIR}/inputs_ct024.txt</arg>
+<arg>5\n0\n</arg>
+<doc>Creates a file with the given content and encoding.</doc>
+<status status="PASS" start="2026-11-24T20:41:27.251951" elapsed="0.000566"/>
+</kw>
+<kw name="Run Process" owner="Process">
+<msg time="2026-11-24T20:41:27.253129" level="TRACE">Arguments: [ 'java' | '-jar' | 'D:/A3Qualidade/FolhaPagamento_A3/FolhaPagamento_A3_jar/FolhaPagamento_A3.jar' | cwd='D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT024/temp_test_dir' | stdin='D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT024/temp_test_dir/inputs_ct024.txt' | timeout=datetime.timedelta(seconds=10) ]</msg>
+<msg time="2026-11-24T20:41:27.257417" level="INFO">Starting process:
+java -jar D:/A3Qualidade/FolhaPagamento_A3/FolhaPagamento_A3_jar/FolhaPagamento_A3.jar</msg>
+<msg time="2026-11-24T20:41:27.257459" level="DEBUG">Process configuration:
+cwd:     D:\A3Qualidade\FolhaPagamento_A3\Testes\CT024\temp_test_dir
+shell:   False
+stdout:  PIPE
+stderr:  PIPE
+stdin:   D:\A3Qualidade\FolhaPagamento_A3\Testes\CT024\temp_test_dir\inputs_ct024.txt
+alias:   None
+env:     None</msg>
+<msg time="2026-11-24T20:41:27.262030" level="INFO">Waiting for process to complete.</msg>
+<msg time="2026-11-24T20:41:27.463850" level="INFO">Process completed.</msg>
+<msg time="2026-11-24T20:41:27.463945" level="TRACE">Return: &lt;robot.libraries.Process.ProcessResult object at 0x00000299AE157CB0&gt;</msg>
+<msg time="2026-11-24T20:41:27.464068" level="INFO">${result} = &lt;result object with rc 0&gt;</msg>
+<var>${result}</var>
+<arg>java</arg>
+<arg>-jar</arg>
+<arg>${JAR_PATH}</arg>
+<arg>cwd=${TEMP_DIR}</arg>
+<arg>stdin=${TEMP_DIR}/inputs_ct024.txt</arg>
+<arg>timeout=10s</arg>
+<doc>Runs a process and waits for it to complete.</doc>
+<status status="PASS" start="2026-11-24T20:41:27.252692" elapsed="0.211405"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-11-24T20:41:27.464786" level="TRACE">Arguments: [ 'STDOUT: \n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: RESUMO DA FOLHA ---\nQuantidade de Colaboradores: 3\nCusto Total Geral da Folha: R$ 7000,00\n\n--- Total Pago por Categoria ---\nCategoria PadrÒo       : R$    2000,00\nCategoria Comissionado : R$    2500,00\nCategoria ProduþÒo     : R$    2500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' ]</msg>
+<msg time="2026-11-24T20:41:27.464878" level="INFO">STDOUT: 
+==================================
+   SISTEMA DE FOLHA DE PAGAMENTO  
+==================================
+1. Cadastrar Colaborador
+2. Consultar Colaboradores
+3. Excluir Colaborador
+4. Gerar Folha Detalhada
+5. Emitir Resumo da Folha
+6. Editar Colaborador
+7. Gerar Folha Individual
+0. Sair
+Escolha uma opþÒo: 
+--- RELATËRIO: RESUMO DA FOLHA ---
+Quantidade de Colaboradores: 3
+Custo Total Geral da Folha: R$ 7000,00
+
+--- Total Pago por Categoria ---
+Categoria PadrÒo       : R$    2000,00
+Categoria Comissionado : R$    2500,00
+Categoria ProduþÒo     : R$    2500,00
+
+==================================
+   SISTEMA DE FOLHA DE PAGAMENTO  
+==================================
+1. Cadastrar Colaborador
+2. Consultar Colaboradores
+3. Excluir Colaborador
+4. Gerar Folha Detalhada
+5. Emitir Resumo da Folha
+6. Editar Colaborador
+7. Gerar Folha Individual
+0. Sair
+Escolha uma opþÒo: Encerrando...</msg>
+<msg time="2026-11-24T20:41:27.464916" level="TRACE">Return: None</msg>
+<arg>STDOUT: ${result.stdout}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-11-24T20:41:27.464436" elapsed="0.000509"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-11-24T20:41:27.465396" level="TRACE">Arguments: [ 'STDERR: ' ]</msg>
+<msg time="2026-11-24T20:41:27.465450" level="INFO">STDERR: </msg>
+<msg time="2026-11-24T20:41:27.465497" level="TRACE">Return: None</msg>
+<arg>STDERR: ${result.stderr}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-11-24T20:41:27.465139" elapsed="0.000388"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-11-24T20:41:27.465942" level="TRACE">Arguments: [ 0 | '0' ]</msg>
+<msg time="2026-11-24T20:41:27.465996" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2026-11-24T20:41:27.466033" level="TRACE">Return: None</msg>
+<arg>${result.rc}</arg>
+<arg>0</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-11-24T20:41:27.465702" elapsed="0.000355"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2026-11-24T20:41:27.466530" level="TRACE">Arguments: [ '\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: RESUMO DA FOLHA ---\nQuantidade de Colaboradores: 3\nCusto Total Geral da Folha: R$ 7000,00\n\n--- Total Pago por Categoria ---\nCategoria PadrÒo       : R$    2000,00\nCategoria Comissionado : R$    2500,00\nCategoria ProduþÒo     : R$    2500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' | '3' ]</msg>
+<msg time="2026-11-24T20:41:27.466602" level="TRACE">Return: None</msg>
+<arg>${result.stdout}</arg>
+<arg>3</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-24T20:41:27.466210" elapsed="0.000416"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2026-11-24T20:41:27.467125" level="TRACE">Arguments: [ '\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: RESUMO DA FOLHA ---\nQuantidade de Colaboradores: 3\nCusto Total Geral da Folha: R$ 7000,00\n\n--- Total Pago por Categoria ---\nCategoria PadrÒo       : R$    2000,00\nCategoria Comissionado : R$    2500,00\nCategoria ProduþÒo     : R$    2500,00\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' | '7000' ]</msg>
+<msg time="2026-11-24T20:41:27.467194" level="TRACE">Return: None</msg>
+<arg>${result.stdout}</arg>
+<arg>7000</arg>
+<doc>Fails if the `container` does not contain the `item` one or more times.</doc>
+<status status="PASS" start="2026-11-24T20:41:27.466899" elapsed="0.000321"/>
+</kw>
+<doc>Valida o RF008 exibindo os totalizadores consolidados da folha de pagamento.</doc>
+<status status="PASS" start="2026-11-24T20:41:27.248946" elapsed="0.218436"/>
+</test>
+<doc>Suite de testes de sistema - CT024 (Emitir Resumo da Folha)</doc>
+<status status="PASS" start="2026-11-24T20:41:27.234873" elapsed="0.233465"/>
+</suite>
+<status status="PASS" start="2026-11-24T20:41:27.194756" elapsed="0.274766"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="CT024" id="s1" pass="1" fail="0" skip="0">CT024</stat>
+<stat name="Teste024" id="s1-s1" pass="1" fail="0" skip="0">CT024.Teste024</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

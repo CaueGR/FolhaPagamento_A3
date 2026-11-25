@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.5.1 (Python 3.14.7 on win32)" generated="2026-11-24T20:42:32.755645" rpa="false" schemaversion="5">
+<suite id="s1" name="CT025" source="D:\A3Qualidade\FolhaPagamento_A3\Testes\CT025">
+<suite id="s1-s1" name="Teste025" source="D:\A3Qualidade\FolhaPagamento_A3\Testes\CT025\teste025.robot">
+<test id="s1-s1-t1" name="CT025 - Emitir Relatorios com Base Vazia via Terminal" line="22">
+<kw name="Create Directory" owner="OperatingSystem">
+<msg time="2026-11-24T20:42:32.810664" level="TRACE">Arguments: [ 'D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT025/temp_test_dir' ]</msg>
+<msg time="2026-11-24T20:42:32.811117" level="INFO" html="true">Created directory '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\Testes\CT025\temp_test_dir"&gt;D:\A3Qualidade\FolhaPagamento_A3\Testes\CT025\temp_test_dir&lt;/a&gt;'.</msg>
+<msg time="2026-11-24T20:42:32.811167" level="TRACE">Return: None</msg>
+<arg>${TEMP_DIR}</arg>
+<doc>Creates the specified directory.</doc>
+<status status="PASS" start="2026-11-24T20:42:32.810540" elapsed="0.000665"/>
+</kw>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2026-11-24T20:42:32.811473" level="TRACE">Arguments: [ 'D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT025/temp_test_dir/colaboradores_db.csv' ]</msg>
+<msg time="2026-11-24T20:42:32.811692" level="INFO" html="true">File '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\Testes\CT025\temp_test_dir\colaboradores_db.csv"&gt;D:\A3Qualidade\FolhaPagamento_A3\Testes\CT025\temp_test_dir\colaboradores_db.csv&lt;/a&gt;' does not exist.</msg>
+<msg time="2026-11-24T20:42:32.811732" level="TRACE">Return: None</msg>
+<arg>${CSV_FILE}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2026-11-24T20:42:32.811394" elapsed="0.000368"/>
+</kw>
+<kw name="Create File" owner="OperatingSystem">
+<msg time="2026-11-24T20:42:32.812013" level="TRACE">Arguments: [ 'D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT025/temp_test_dir/inputs_ct025.txt' | '4\n5\n0\n' ]</msg>
+<msg time="2026-11-24T20:42:32.812604" level="INFO" html="true">Created file '&lt;a href="file://D:\A3Qualidade\FolhaPagamento_A3\Testes\CT025\temp_test_dir\inputs_ct025.txt"&gt;D:\A3Qualidade\FolhaPagamento_A3\Testes\CT025\temp_test_dir\inputs_ct025.txt&lt;/a&gt;'.</msg>
+<msg time="2026-11-24T20:42:32.812652" level="TRACE">Return: None</msg>
+<arg>${TEMP_DIR}/inputs_ct025.txt</arg>
+<arg>4\n5\n0\n</arg>
+<doc>Creates a file with the given content and encoding.</doc>
+<status status="PASS" start="2026-11-24T20:42:32.811920" elapsed="0.000767"/>
+</kw>
+<kw name="Run Process" owner="Process">
+<msg time="2026-11-24T20:42:32.813434" level="TRACE">Arguments: [ 'java' | '-jar' | 'D:/A3Qualidade/FolhaPagamento_A3/FolhaPagamento_A3_jar/FolhaPagamento_A3.jar' | cwd='D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT025/temp_test_dir' | stdin='D:\\A3Qualidade\\FolhaPagamento_A3\\Testes\\CT025/temp_test_dir/inputs_ct025.txt' | timeout=datetime.timedelta(seconds=10) ]</msg>
+<msg time="2026-11-24T20:42:32.817974" level="INFO">Starting process:
+java -jar D:/A3Qualidade/FolhaPagamento_A3/FolhaPagamento_A3_jar/FolhaPagamento_A3.jar</msg>
+<msg time="2026-11-24T20:42:32.818026" level="DEBUG">Process configuration:
+cwd:     D:\A3Qualidade\FolhaPagamento_A3\Testes\CT025\temp_test_dir
+shell:   False
+stdout:  PIPE
+stderr:  PIPE
+stdin:   D:\A3Qualidade\FolhaPagamento_A3\Testes\CT025\temp_test_dir\inputs_ct025.txt
+alias:   None
+env:     None</msg>
+<msg time="2026-11-24T20:42:32.823861" level="INFO">Waiting for process to complete.</msg>
+<msg time="2026-11-24T20:42:33.025266" level="INFO">Process completed.</msg>
+<msg time="2026-11-24T20:42:33.025381" level="TRACE">Return: &lt;robot.libraries.Process.ProcessResult object at 0x000001E951AA7A10&gt;</msg>
+<msg time="2026-11-24T20:42:33.025504" level="INFO">${result} = &lt;result object with rc 0&gt;</msg>
+<var>${result}</var>
+<arg>java</arg>
+<arg>-jar</arg>
+<arg>${JAR_PATH}</arg>
+<arg>cwd=${TEMP_DIR}</arg>
+<arg>stdin=${TEMP_DIR}/inputs_ct025.txt</arg>
+<arg>timeout=10s</arg>
+<doc>Runs a process and waits for it to complete.</doc>
+<status status="PASS" start="2026-11-24T20:42:32.812917" elapsed="0.212610"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-11-24T20:42:33.026205" level="TRACE">Arguments: [ 'STDOUT: \n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: FOLHA DE PAGAMENTO DETALHADA ---\nNenhum colaborador cadastrado.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: RESUMO DA FOLHA ---\nNenhum colaborador cadastrado para o resumo.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' ]</msg>
+<msg time="2026-11-24T20:42:33.026277" level="INFO">STDOUT: 
+==================================
+   SISTEMA DE FOLHA DE PAGAMENTO  
+==================================
+1. Cadastrar Colaborador
+2. Consultar Colaboradores
+3. Excluir Colaborador
+4. Gerar Folha Detalhada
+5. Emitir Resumo da Folha
+6. Editar Colaborador
+7. Gerar Folha Individual
+0. Sair
+Escolha uma opþÒo: 
+--- RELATËRIO: FOLHA DE PAGAMENTO DETALHADA ---
+Nenhum colaborador cadastrado.
+
+==================================
+   SISTEMA DE FOLHA DE PAGAMENTO  
+==================================
+1. Cadastrar Colaborador
+2. Consultar Colaboradores
+3. Excluir Colaborador
+4. Gerar Folha Detalhada
+5. Emitir Resumo da Folha
+6. Editar Colaborador
+7. Gerar Folha Individual
+0. Sair
+Escolha uma opþÒo: 
+--- RELATËRIO: RESUMO DA FOLHA ---
+Nenhum colaborador cadastrado para o resumo.
+
+==================================
+   SISTEMA DE FOLHA DE PAGAMENTO  
+==================================
+1. Cadastrar Colaborador
+2. Consultar Colaboradores
+3. Excluir Colaborador
+4. Gerar Folha Detalhada
+5. Emitir Resumo da Folha
+6. Editar Colaborador
+7. Gerar Folha Individual
+0. Sair
+Escolha uma opþÒo: Encerrando...</msg>
+<msg time="2026-11-24T20:42:33.026314" level="TRACE">Return: None</msg>
+<arg>STDOUT: ${result.stdout}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-11-24T20:42:33.025879" elapsed="0.000462"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-11-24T20:42:33.026805" level="TRACE">Arguments: [ 'STDERR: ' ]</msg>
+<msg time="2026-11-24T20:42:33.026857" level="INFO">STDERR: </msg>
+<msg time="2026-11-24T20:42:33.026886" level="TRACE">Return: None</msg>
+<arg>STDERR: ${result.stderr}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-11-24T20:42:33.026562" elapsed="0.000350"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-11-24T20:42:33.027323" level="TRACE">Arguments: [ 0 | '0' ]</msg>
+<msg time="2026-11-24T20:42:33.027383" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2026-11-24T20:42:33.027422" level="TRACE">Return: None</msg>
+<arg>${result.rc}</arg>
+<arg>0</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-11-24T20:42:33.027084" elapsed="0.000364"/>
+</kw>
+<kw name="Should Not Contain" owner="BuiltIn">
+<msg time="2026-11-24T20:42:33.027960" level="TRACE">Arguments: [ '\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: FOLHA DE PAGAMENTO DETALHADA ---\nNenhum colaborador cadastrado.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: RESUMO DA FOLHA ---\nNenhum colaborador cadastrado para o resumo.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' | 'NaN' ]</msg>
+<msg time="2026-11-24T20:42:33.028051" level="TRACE">Return: None</msg>
+<arg>${result.stdout}</arg>
+<arg>NaN</arg>
+<doc>Fails if the `container` contains the `item`.</doc>
+<status status="PASS" start="2026-11-24T20:42:33.027624" elapsed="0.000453"/>
+</kw>
+<kw name="Should Not Contain" owner="BuiltIn">
+<msg time="2026-11-24T20:42:33.028478" level="TRACE">Arguments: [ '\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: FOLHA DE PAGAMENTO DETALHADA ---\nNenhum colaborador cadastrado.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: RESUMO DA FOLHA ---\nNenhum colaborador cadastrado para o resumo.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' | 'null' ]</msg>
+<msg time="2026-11-24T20:42:33.028549" level="TRACE">Return: None</msg>
+<arg>${result.stdout}</arg>
+<arg>null</arg>
+<doc>Fails if the `container` contains the `item`.</doc>
+<status status="PASS" start="2026-11-24T20:42:33.028231" elapsed="0.000342"/>
+</kw>
+<kw name="Should Not Contain" owner="BuiltIn">
+<msg time="2026-11-24T20:42:33.029062" level="TRACE">Arguments: [ '\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: FOLHA DE PAGAMENTO DETALHADA ---\nNenhum colaborador cadastrado.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: \n--- RELATËRIO: RESUMO DA FOLHA ---\nNenhum colaborador cadastrado para o resumo.\n\n==================================\n   SISTEMA DE FOLHA DE PAGAMENTO  \n==================================\n1. Cadastrar Colaborador\n2. Consultar Colaboradores\n3. Excluir Colaborador\n4. Gerar Folha Detalhada\n5. Emitir Resumo da Folha\n6. Editar Colaborador\n7. Gerar Folha Individual\n0. Sair\nEscolha uma opþÒo: Encerrando...' | 'Exception' ]</msg>
+<msg time="2026-11-24T20:42:33.029128" level="TRACE">Return: None</msg>
+<arg>${result.stdout}</arg>
+<arg>Exception</arg>
+<doc>Fails if the `container` contains the `item`.</doc>
+<status status="PASS" start="2026-11-24T20:42:33.028849" elapsed="0.000306"/>
+</kw>
+<doc>Valida RF007 e RF008 quando nao existem colaboradores cadastrados.</doc>
+<status status="PASS" start="2026-11-24T20:42:32.809737" elapsed="0.219593"/>
+</test>
+<doc>Suite de testes de sistema - CT025 (Folha e Resumo com CSV Vazio)</doc>
+<status status="PASS" start="2026-11-24T20:42:32.796360" elapsed="0.233982"/>
+</suite>
+<status status="PASS" start="2026-11-24T20:42:32.757587" elapsed="0.274024"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="CT025" id="s1" pass="1" fail="0" skip="0">CT025</stat>
+<stat name="Teste025" id="s1-s1" pass="1" fail="0" skip="0">CT025.Teste025</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
